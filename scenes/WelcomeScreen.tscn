@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxqvn8yxqkqxr"]
+
+[ext_resource type="Script" path="res://scripts/WelcomeScreen.gd" id="1_0k8vr"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/desert_outpost_welcome_320x180.svg" id="2_1k8vr"]
+
+[node name="WelcomeScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_0k8vr")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_1k8vr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TitleContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+
+[node name="GameTitle" type="Label" parent="UI/TitleContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 48
+text = "Azamane"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="UI/TitleContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 24
+text = "Moroccan Time Capsule"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="UI/TitleContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 50)
+
+[node name="StartButton" type="Button" parent="UI/TitleContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 24
+text = "Start Adventure"
+
+[node name="ParticleEffects" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="DesertParticles" type="CPUParticles2D" parent="UI/ParticleEffects"]
+position = Vector2(640, 100)
+amount = 50
+lifetime = 8.0
+emission_rect_extents = Vector2(640, 50)
+direction = Vector2(1, 1)
+spread = 30.0
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+gravity = Vector2(0, 10)
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+color = Color(0.831, 0.627, 0.09, 0.3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="pressed" from="UI/TitleContainer/StartButton" to="." method="_on_start_button_pressed"]

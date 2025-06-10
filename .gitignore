@@ -1,0 +1,73 @@
+# Godot 4+ specific ignores
+.godot/
+.import/
+
+# Godot-specific ignores
+export.cfg
+export_presets.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# System/Editor-specific ignores
+.tmp/
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.buildpath
+
+# IDE-specific ignores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Build outputs
+builds/
+exports/
+*.exe
+*.pck
+*.zip
+*.dmg
+*.app
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+temp/
+tmp/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Game-specific ignores
+saves/
+user://
+*.save
+
+# Test files (optional - remove if you want to include tests)
+test_*.gd
+debug_*.gd
+*_test.gd
+
+# Documentation builds
+docs/_build/

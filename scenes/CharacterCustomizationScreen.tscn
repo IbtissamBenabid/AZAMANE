@@ -1,0 +1,174 @@
+[gd_scene load_steps=3 format=3 uid="uid://fl25ito7vg65"]
+
+[ext_resource type="Script" path="res://scripts/CharacterCustomizationScreen.gd" id="1_2k8vr"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/character_creation_320x180.svg" id="2_3k8vr"]
+
+[node name="CharacterCustomizationScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_2k8vr")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_3k8vr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MainContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -250.0
+offset_right = 400.0
+offset_bottom = 250.0
+
+[node name="CharacterPreview" type="Panel" parent="UI/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/CharacterPreview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="PreviewTitle" type="Label" parent="UI/MainContainer/CharacterPreview/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 24
+text = "Character Preview"
+horizontal_alignment = 1
+
+[node name="CharacterSprite" type="TextureRect" parent="UI/MainContainer/CharacterPreview/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+custom_minimum_size = Vector2(128, 128)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CustomizationPanel" type="Panel" parent="UI/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/CustomizationPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="Title" type="Label" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 28
+text = "Customize Amziane"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="GenderSection" type="VBoxContainer" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="GenderLabel" type="Label" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 20
+text = "Gender:"
+
+[node name="GenderButtons" type="HBoxContainer" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection"]
+layout_mode = 2
+
+[node name="MaleButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection/GenderButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+toggle_mode = true
+button_pressed = true
+button_group = null
+text = "Male"
+
+[node name="FemaleButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection/GenderButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+toggle_mode = true
+text = "Female"
+
+[node name="Spacer2" type="Control" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="ClothingSection" type="VBoxContainer" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ClothingLabel" type="Label" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 20
+text = "Clothing:"
+
+[node name="ClothingButtons" type="VBoxContainer" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection"]
+layout_mode = 2
+
+[node name="IndigoDjellabaButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+toggle_mode = true
+button_pressed = true
+text = "Indigo djellaba with gold trim"
+
+[node name="BrownRobeButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+toggle_mode = true
+text = "Brown robe with green accents"
+
+[node name="BlueTunicButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+toggle_mode = true
+text = "Blue tunic with beige details"
+
+[node name="Spacer3" type="Control" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StartButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 24
+text = "Start Adventure"
+
+[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection/GenderButtons/MaleButton" to="." method="_on_male_button_pressed"]
+[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection/GenderButtons/FemaleButton" to="." method="_on_female_button_pressed"]
+[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons/IndigoDjellabaButton" to="." method="_on_indigo_djellaba_button_pressed"]
+[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons/BrownRobeButton" to="." method="_on_brown_robe_button_pressed"]
+[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons/BlueTunicButton" to="." method="_on_blue_tunic_button_pressed"]
+[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

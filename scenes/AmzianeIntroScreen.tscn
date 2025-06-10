@@ -1,0 +1,137 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5v25ito7xi78"]
+
+[ext_resource type="Script" path="res://scripts/AmzianeIntroScreen.gd" id="1_4k8vr"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/character_creation_320x180.svg" id="2_5k8vr"]
+
+[node name="AmzianeIntroScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_4k8vr")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_5k8vr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MainContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -250.0
+offset_right = 450.0
+offset_bottom = 250.0
+
+[node name="CharacterCard" type="Panel" parent="UI/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/CharacterCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="CharacterTitle" type="Label" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 28
+text = "Meet Your Character"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="CharacterSprite" type="TextureRect" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+custom_minimum_size = Vector2(128, 128)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer2" type="Control" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="CharacterName" type="Label" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 32
+text = "Amziane"
+horizontal_alignment = 1
+
+[node name="InfoPanel" type="Panel" parent="UI/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="InfoTitle" type="Label" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 24
+text = "Character Details"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="CharacterInfo" type="RichTextLabel" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[b]Name:[/b] [color=#D4A017]Amziane[/color]
+
+[b]Job:[/b] Berber Merchant
+
+[b]Personality:[/b] Clever, charismatic, resourceful
+
+[b]Background:[/b] A middle-aged trader roaming 7th-century trans-Saharan routes, Amziane barters salt and goods, solves Tamazight riddles, and whispers tales of djinn to win trust.
+
+[center][color=#355E3B]Ready to begin your adventure?[/color][/center]"
+fit_content = true
+
+[node name="Spacer2" type="Control" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="NextButton" type="Button" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 20
+text = "Enter the Desert"
+
+[connection signal="pressed" from="UI/MainContainer/InfoPanel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

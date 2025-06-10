@@ -1,0 +1,136 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj7kgwgnsoqr"]
+
+[ext_resource type="Script" path="res://scripts/QuestScreen.gd" id="1_6k8vr"]
+[ext_resource type="Texture2D" path="res://assets/sprites/dialog_panel.svg" id="2_7k8vr"]
+
+[node name="QuestScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_6k8vr")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.545, 0.333, 0.137, 0.8)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="QuestPanel" type="NinePatchRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 350.0
+offset_bottom = 250.0
+texture = ExtResource("2_7k8vr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/QuestPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+
+[node name="QuestTitle" type="Label" parent="UI/QuestPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 28
+text = "Quest Title"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/QuestPanel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="QuestDescription" type="RichTextLabel" parent="UI/QuestPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Quest description will appear here..."
+fit_content = true
+
+[node name="Spacer2" type="Control" parent="UI/QuestPanel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="RiddleText" type="Label" parent="UI/QuestPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 18
+text = "Riddle text will appear here..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Spacer3" type="Control" parent="UI/QuestPanel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="OptionsContainer" type="VBoxContainer" parent="UI/QuestPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionA" type="Button" parent="UI/QuestPanel/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 16
+text = "Option A"
+
+[node name="OptionB" type="Button" parent="UI/QuestPanel/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 16
+text = "Option B"
+
+[node name="OptionC" type="Button" parent="UI/QuestPanel/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 16
+text = "Option C"
+
+[node name="Spacer4" type="Control" parent="UI/QuestPanel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="ButtonContainer" type="HBoxContainer" parent="UI/QuestPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="UI/QuestPanel/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
+theme_override_font_sizes/font_size = 16
+text = "Back to Map"
+
+[node name="Spacer" type="Control" parent="UI/QuestPanel/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(20, 0)
+
+[node name="SubmitButton" type="Button" parent="UI/QuestPanel/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.208, 0.369, 0.231, 1)
+theme_override_font_sizes/font_size = 16
+text = "Submit Answer"
+disabled = true
+
+[connection signal="pressed" from="UI/QuestPanel/VBoxContainer/OptionsContainer/OptionA" to="." method="_on_option_a_pressed"]
+[connection signal="pressed" from="UI/QuestPanel/VBoxContainer/OptionsContainer/OptionB" to="." method="_on_option_b_pressed"]
+[connection signal="pressed" from="UI/QuestPanel/VBoxContainer/OptionsContainer/OptionC" to="." method="_on_option_c_pressed"]
+[connection signal="pressed" from="UI/QuestPanel/VBoxContainer/ButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="UI/QuestPanel/VBoxContainer/ButtonContainer/SubmitButton" to="." method="_on_submit_button_pressed"]

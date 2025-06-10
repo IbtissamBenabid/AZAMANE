@@ -1,0 +1,34 @@
+# Background Assets for AZAMANE
+
+This directory will contain:
+
+## Scene Backgrounds (320x180 pixels)
+- desert_outpost_welcome.png - Welcome screen background
+  * Sand dunes, tents, oasis in distance
+  * Subtle djinn glow effects
+  * Warm desert atmosphere
+
+- desert_outpost_main.png - Main game world background  
+  * Trade stalls, oasis, merchant tents
+  * Clear hotspot areas for interaction
+  * Authentic 7th-century Berber setting
+
+- character_creation_bg.png - Persona customization background
+  * Simple, non-distracting backdrop
+  * Focus on character preview area
+
+- narrative_scroll_bg.png - Story introduction background
+  * Parchment or desert scene
+  * Readable text overlay area
+
+## Visual Elements
+- Authentic Berber architectural details
+- Desert landscape with proper perspective
+- Cultural accuracy in tent and stall designs
+- Atmospheric lighting suggesting time of day
+
+## Color Palette
+- Primary: Desert Brown (#8B5523) for sand and earth
+- Accent: Deep Blue (#2A3F7B) for sky and shadows  
+- Highlight: Moroccan Gold (#D4A017) for precious items
+- Nature: Oasis Green (#355E3B) for vegetation

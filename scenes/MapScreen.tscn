@@ -1,0 +1,169 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6w25ito7yj8i"]
+
+[ext_resource type="Script" path="res://scripts/MapScreen.gd" id="1_5k8vr"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/desert_outpost_main_320x180.svg" id="2_6k8vr"]
+
+[node name="MapScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_5k8vr")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_6k8vr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TopPanel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/TopPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = -10.0
+
+[node name="Title" type="Label" parent="UI/TopPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 24
+text = "Desert Trade Outpost"
+
+[node name="StatsContainer" type="VBoxContainer" parent="UI/TopPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="CulturePoints" type="Label" parent="UI/TopPanel/HBoxContainer/StatsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 16
+text = "Culture Points: 0"
+
+[node name="TrustLevel" type="Label" parent="UI/TopPanel/HBoxContainer/StatsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.208, 0.369, 0.231, 1)
+theme_override_font_sizes/font_size = 16
+text = "Trust Level: Low"
+
+[node name="CharacterLayer" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PlayerCharacter" type="TextureRect" parent="UI/CharacterLayer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuestHotspots" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TradeStallButton" type="Button" parent="UI/QuestHotspots"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -25.0
+offset_right = 350.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 16
+text = "🏪 Trade Stall"
+
+[node name="OasisPathButton" type="Button" parent="UI/QuestHotspots"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -25.0
+offset_right = -50.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.208, 0.369, 0.231, 1)
+theme_override_font_sizes/font_size = 16
+text = "🌴 Oasis Path"
+
+[node name="CaravanCampButton" type="Button" parent="UI/QuestHotspots"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = -100.0
+theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
+theme_override_font_sizes/font_size = 16
+text = "🏕️ Caravan Camp"
+
+[node name="BottomPanel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/BottomPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = -10.0
+
+[node name="Instructions" type="Label" parent="UI/BottomPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 14
+text = "Click on locations to start quests and earn Culture Points!"
+horizontal_alignment = 1
+
+[node name="TimeCapsuleButton" type="Button" parent="UI/BottomPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 16
+text = "📦 View Time Capsule"
+
+[connection signal="pressed" from="UI/QuestHotspots/TradeStallButton" to="." method="_on_trade_stall_button_pressed"]
+[connection signal="pressed" from="UI/QuestHotspots/OasisPathButton" to="." method="_on_oasis_path_button_pressed"]
+[connection signal="pressed" from="UI/QuestHotspots/CaravanCampButton" to="." method="_on_caravan_camp_button_pressed"]
+[connection signal="pressed" from="UI/BottomPanel/VBoxContainer/TimeCapsuleButton" to="." method="_on_time_capsule_button_pressed"]

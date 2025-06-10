@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://4u25ito7wh67"]
+
+[ext_resource type="Script" path="res://scripts/RulesScreen.gd" id="1_3k8vr"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/narrative_scroll_320x180.svg" id="2_4k8vr"]
+
+[node name="RulesScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_3k8vr")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_4k8vr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ContentPanel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -300.0
+offset_right = 450.0
+offset_bottom = 300.0
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ContentPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+
+[node name="Title" type="Label" parent="UI/ContentPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 32
+text = "Game Rules"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/ContentPanel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="RulesText" type="RichTextLabel" parent="UI/ContentPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[b]1. Role:[/b] You'll play as [color=#D4A017]Amziane[/color], a Berber merchant, with 3 unique quests.
+
+[b]2. Quests:[/b] Solve riddles, navigate, and share tales to earn [color=#D4A017]1-3 Culture Points[/color].
+
+[b]3. Community Trust Meter:[/b] Make choices to raise trust ([color=#8B5523]Low[/color]/[color=#355E3B]Medium[/color]/[color=#D4A017]High[/color]) and unlock a bonus quest.
+
+[b]4. Rewards:[/b] Collect items (e.g., salt crystal) with lore for your time capsule.
+
+[b]5. Replay:[/b] Quests and riddles vary for a fresh adventure!
+
+[center][color=#D4A017]Good luck on your journey through 7th-century Morocco![/color][/center]"
+fit_content = true
+
+[node name="Spacer2" type="Control" parent="UI/ContentPanel/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="NextButton" type="Button" parent="UI/ContentPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 20
+text = "Meet Amziane"
+
+[connection signal="pressed" from="UI/ContentPanel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

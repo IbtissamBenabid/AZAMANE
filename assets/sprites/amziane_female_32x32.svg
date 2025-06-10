@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Female Amziane - Berber Merchant -->
+  <!-- Base 32x32 units, scalable -->
+  
+  <!-- Background (transparent) -->
+  <rect width="32" height="32" fill="none"/>
+  
+  <!-- Body - Indigo Djellaba (more flowing for female) -->
+  <path d="M7 16 L7 30 L25 30 L25 16 L21 14 L11 14 Z" fill="#2A3F7B" stroke="#1a2a5a" stroke-width="0.5"/>
+  
+  <!-- Arms -->
+  <ellipse cx="5" cy="18" rx="2" ry="4" fill="#2A3F7B"/>
+  <ellipse cx="27" cy="18" rx="2" ry="4" fill="#2A3F7B"/>
+  
+  <!-- Hands - Sun-tanned skin -->
+  <circle cx="5" cy="22" r="1.5" fill="#D2B48C"/>
+  <circle cx="27" cy="22" r="1.5" fill="#D2B48C"/>
+  
+  <!-- Head - Sun-tanned skin -->
+  <circle cx="16" cy="10" r="6" fill="#D2B48C"/>
+  
+  <!-- Hair (visible under head covering) -->
+  <path d="M12 6 Q16 4 20 6 Q20 8 16 8 Q12 8 12 6" fill="#654321"/>
+  
+  <!-- Head covering - Indigo with decorative pattern -->
+  <path d="M10 6 Q16 2 22 6 Q22 9 16 9 Q10 9 10 6" fill="#2A3F7B"/>
+  <path d="M10 6 L22 6 L22 9 L10 9 Z" fill="#2A3F7B"/>
+  
+  <!-- Decorative pattern on head covering -->
+  <circle cx="13" cy="7" r="0.5" fill="#D4A017"/>
+  <circle cx="16" cy="6.5" r="0.5" fill="#D4A017"/>
+  <circle cx="19" cy="7" r="0.5" fill="#D4A017"/>
+  
+  <!-- Face features -->
+  <!-- Eyes (slightly larger/more expressive) -->
+  <circle cx="13" cy="9" r="0.9" fill="white"/>
+  <circle cx="19" cy="9" r="0.9" fill="white"/>
+  <circle cx="13" cy="9" r="0.4" fill="black"/>
+  <circle cx="19" cy="9" r="0.4" fill="black"/>
+  
+  <!-- Eyelashes -->
+  <path d="M12.5 8.5 L13.5 8.2" stroke="#654321" stroke-width="0.3"/>
+  <path d="M18.5 8.2 L19.5 8.5" stroke="#654321" stroke-width="0.3"/>
+  
+  <!-- Nose -->
+  <path d="M16 10 L15.5 11.5 L16.5 11.5 Z" fill="#C19A6B"/>
+  
+  <!-- Mouth - Gentle smile -->
+  <path d="M14 12 Q16 13.5 18 12" stroke="#8B4513" stroke-width="0.5" fill="none"/>
+  
+  <!-- Gold Satchel -->
+  <rect x="21" y="16" width="4" height="3" fill="#D4A017" stroke="#B8860B" stroke-width="0.3"/>
+  <circle cx="23" cy="17.5" r="0.5" fill="#B8860B"/>
+  
+  <!-- Staff (in left hand) -->
+  <rect x="4" y="14" width="1" height="12" fill="#8B5523"/>
+  <circle cx="4.5" cy="14" r="1" fill="#8B5523"/>
+  
+  <!-- Feet (smaller) -->
+  <ellipse cx="12" cy="30" rx="1.5" ry="1" fill="#654321"/>
+  <ellipse cx="20" cy="30" rx="1.5" ry="1" fill="#654321"/>
+  
+  <!-- Gold trim on djellaba -->
+  <path d="M7 16 L25 16" stroke="#D4A017" stroke-width="0.5"/>
+  <path d="M7 30 L25 30" stroke="#D4A017" stroke-width="0.5"/>
+  <path d="M11 20 L21 20" stroke="#D4A017" stroke-width="0.3"/>
+  
+  <!-- Additional feminine details -->
+  <!-- Jewelry - small earrings -->
+  <circle cx="11" cy="10" r="0.3" fill="#D4A017"/>
+  <circle cx="21" cy="10" r="0.3" fill="#D4A017"/>
+  
+  <!-- Decorative belt -->
+  <rect x="11" y="22" width="10" height="1" fill="#D4A017"/>
+</svg>
