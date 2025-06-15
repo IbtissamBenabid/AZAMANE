@@ -1,13 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxqvn8yxqkqxr"]
 
-[ext_resource type="Script" path="res://scripts/WelcomeScreen.gd" id="1_0k8vr"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/desert_outpost_welcome_320x180.svg" id="2_1k8vr"]
+[ext_resource type="Script" uid="uid://bq0r0rj7epgj6" path="res://scripts/WelcomeScreen.gd" id="1_0k8vr"]
+[ext_resource type="Texture2D" uid="uid://drpurv1wtpec1" path="res://assets/backgrounds/desert_outpost_welcome_640x360.png" id="2_myxqs"]
 
 [node name="WelcomeScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_0k8vr")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -15,7 +17,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource("2_1k8vr")
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_myxqs")
 expand_mode = 1
 stretch_mode = 5
 
@@ -24,6 +28,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TitleContainer" type="VBoxContainer" parent="UI"]
 layout_mode = 1
@@ -36,6 +42,8 @@ offset_left = -300.0
 offset_top = -150.0
 offset_right = 300.0
 offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GameTitle" type="Label" parent="UI/TitleContainer"]
 layout_mode = 2
@@ -52,8 +60,8 @@ text = "Moroccan Time Capsule"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="UI/TitleContainer"]
-layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 
 [node name="StartButton" type="Button" parent="UI/TitleContainer"]
 layout_mode = 2
@@ -66,18 +74,19 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="DesertParticles" type="CPUParticles2D" parent="UI/ParticleEffects"]
 position = Vector2(640, 100)
 amount = 50
 lifetime = 8.0
-emission_rect_extents = Vector2(640, 50)
 direction = Vector2(1, 1)
 spread = 30.0
+gravity = Vector2(0, 10)
 initial_velocity_min = 20.0
 initial_velocity_max = 50.0
-gravity = Vector2(0, 10)
 scale_amount_min = 0.5
 scale_amount_max = 1.5
 color = Color(0.831, 0.627, 0.09, 0.3)

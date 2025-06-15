@@ -1,13 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6w25ito7yj8i"]
 
-[ext_resource type="Script" path="res://scripts/MapScreen.gd" id="1_5k8vr"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/desert_outpost_main_320x180.svg" id="2_6k8vr"]
+[ext_resource type="Script" uid="uid://50gcjf4q7avc" path="res://scripts/MapScreen.gd" id="1_5k8vr"]
+[ext_resource type="Texture2D" uid="uid://drgneoja5rphk" path="res://assets/backgrounds/desert_outpost_main_640x360.png" id="2_hyscd"]
 
 [node name="MapScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_5k8vr")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -15,7 +17,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource("2_6k8vr")
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hyscd")
 expand_mode = 1
 stretch_mode = 5
 
@@ -24,13 +28,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TopPanel" type="Panel" parent="UI"]
+modulate = Color(1, 1, 1, 0.9)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 80.0
-modulate = Color(1, 1, 1, 0.9)
+grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/TopPanel"]
 layout_mode = 1
@@ -41,6 +48,8 @@ offset_left = 20.0
 offset_top = 10.0
 offset_right = -20.0
 offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Title" type="Label" parent="UI/TopPanel/HBoxContainer"]
 layout_mode = 2
@@ -69,6 +78,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PlayerCharacter" type="TextureRect" parent="UI/CharacterLayer"]
 layout_mode = 1
@@ -81,6 +92,8 @@ offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
@@ -89,6 +102,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TradeStallButton" type="Button" parent="UI/QuestHotspots"]
 layout_mode = 1
@@ -99,6 +114,7 @@ offset_left = 200.0
 offset_top = -25.0
 offset_right = 350.0
 offset_bottom = 25.0
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/font_size = 16
 text = "🏪 Trade Stall"
@@ -114,6 +130,8 @@ offset_left = -200.0
 offset_top = -25.0
 offset_right = -50.0
 offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.208, 0.369, 0.231, 1)
 theme_override_font_sizes/font_size = 16
 text = "🌴 Oasis Path"
@@ -127,18 +145,21 @@ offset_left = 100.0
 offset_top = -150.0
 offset_right = 250.0
 offset_bottom = -100.0
+grow_vertical = 0
 theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
 theme_override_font_sizes/font_size = 16
 text = "🏕️ Caravan Camp"
 
 [node name="BottomPanel" type="Panel" parent="UI"]
+modulate = Color(1, 1, 1, 0.9)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -100.0
-modulate = Color(1, 1, 1, 0.9)
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/BottomPanel"]
 layout_mode = 1
@@ -149,6 +170,8 @@ offset_left = 20.0
 offset_top = 10.0
 offset_right = -20.0
 offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Instructions" type="Label" parent="UI/BottomPanel/VBoxContainer"]
 layout_mode = 2

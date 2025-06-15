@@ -157,7 +157,7 @@ func get_amziane_sprite_path() -> String:
 	if player_data.gender == "Female":
 		return "res://assets/sprites/amziane_female_32x32.svg"
 	else:
-		return "res://assets/sprites/amziane_32x32.svg"
+		return "res://assets/sprites/amziane_128x128.png"
 
 # Quest system
 func start_quest(quest_id: String) -> Dictionary:
@@ -203,5 +203,3 @@ func answer_quest(quest_id: String, answer_index: int) -> Dictionary:
 			result["collectible"] = collectible_name
 
 	return result
-
-

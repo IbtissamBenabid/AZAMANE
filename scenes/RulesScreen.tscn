@@ -1,13 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://4u25ito7wh67"]
 
-[ext_resource type="Script" path="res://scripts/RulesScreen.gd" id="1_3k8vr"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/narrative_scroll_320x180.svg" id="2_4k8vr"]
+[ext_resource type="Script" uid="uid://dna7mupgreu3f" path="res://scripts/RulesScreen.gd" id="1_3k8vr"]
+[ext_resource type="Texture2D" uid="uid://drl6bk3i6g3xi" path="res://assets/backgrounds/narrative_scroll_640x360.png" id="2_5jm8q"]
 
 [node name="RulesScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_3k8vr")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -15,7 +17,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource("2_4k8vr")
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5jm8q")
 expand_mode = 1
 stretch_mode = 5
 
@@ -24,8 +28,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ContentPanel" type="Panel" parent="UI"]
+modulate = Color(1, 1, 1, 0.9)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,7 +43,8 @@ offset_left = -450.0
 offset_top = -300.0
 offset_right = 450.0
 offset_bottom = 300.0
-modulate = Color(1, 1, 1, 0.9)
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/ContentPanel"]
 layout_mode = 1
@@ -47,6 +55,8 @@ offset_left = 30.0
 offset_top = 30.0
 offset_right = -30.0
 offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Title" type="Label" parent="UI/ContentPanel/VBoxContainer"]
 layout_mode = 2
@@ -56,8 +66,8 @@ text = "Game Rules"
 horizontal_alignment = 1
 
 [node name="Spacer1" type="Control" parent="UI/ContentPanel/VBoxContainer"]
-layout_mode = 2
 custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="RulesText" type="RichTextLabel" parent="UI/ContentPanel/VBoxContainer"]
 layout_mode = 2
@@ -79,8 +89,8 @@ text = "[b]1. Role:[/b] You'll play as [color=#D4A017]Amziane[/color], a Berber 
 fit_content = true
 
 [node name="Spacer2" type="Control" parent="UI/ContentPanel/VBoxContainer"]
-layout_mode = 2
 custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="NextButton" type="Button" parent="UI/ContentPanel/VBoxContainer"]
 layout_mode = 2

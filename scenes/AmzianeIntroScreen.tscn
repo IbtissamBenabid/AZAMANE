@@ -1,13 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5v25ito7xi78"]
 
-[ext_resource type="Script" path="res://scripts/AmzianeIntroScreen.gd" id="1_4k8vr"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/character_creation_320x180.svg" id="2_5k8vr"]
+[ext_resource type="Script" uid="uid://dls0kwyngjiru" path="res://scripts/AmzianeIntroScreen.gd" id="1_4k8vr"]
+[ext_resource type="Texture2D" uid="uid://bk1yqof0wr1el" path="res://assets/backgrounds/character_creation_640x360.png" id="2_upih2"]
 
 [node name="AmzianeIntroScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_4k8vr")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -15,7 +17,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource("2_5k8vr")
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_upih2")
 expand_mode = 1
 stretch_mode = 5
 
@@ -24,6 +28,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MainContainer" type="HBoxContainer" parent="UI"]
 layout_mode = 1
@@ -36,11 +42,13 @@ offset_left = -450.0
 offset_top = -250.0
 offset_right = 450.0
 offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CharacterCard" type="Panel" parent="UI/MainContainer"]
+modulate = Color(1, 1, 1, 0.9)
 layout_mode = 2
 size_flags_horizontal = 3
-modulate = Color(1, 1, 1, 0.9)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/CharacterCard"]
 layout_mode = 1
@@ -51,6 +59,8 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = -20.0
 offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CharacterTitle" type="Label" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
 layout_mode = 2
@@ -60,19 +70,19 @@ text = "Meet Your Character"
 horizontal_alignment = 1
 
 [node name="Spacer1" type="Control" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
-layout_mode = 2
 custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="CharacterSprite" type="TextureRect" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
-custom_minimum_size = Vector2(128, 128)
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Spacer2" type="Control" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
-layout_mode = 2
 custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="CharacterName" type="Label" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
 layout_mode = 2
@@ -82,9 +92,9 @@ text = "Amziane"
 horizontal_alignment = 1
 
 [node name="InfoPanel" type="Panel" parent="UI/MainContainer"]
+modulate = Color(1, 1, 1, 0.9)
 layout_mode = 2
 size_flags_horizontal = 3
-modulate = Color(1, 1, 1, 0.9)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/InfoPanel"]
 layout_mode = 1
@@ -95,6 +105,8 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = -20.0
 offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="InfoTitle" type="Label" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
 layout_mode = 2
@@ -104,8 +116,8 @@ text = "Character Details"
 horizontal_alignment = 1
 
 [node name="Spacer1" type="Control" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
-layout_mode = 2
 custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="CharacterInfo" type="RichTextLabel" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
 layout_mode = 2
@@ -125,8 +137,8 @@ text = "[b]Name:[/b] [color=#D4A017]Amziane[/color]
 fit_content = true
 
 [node name="Spacer2" type="Control" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
-layout_mode = 2
 custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="NextButton" type="Button" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
 layout_mode = 2
