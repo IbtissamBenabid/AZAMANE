@@ -3,8 +3,8 @@ extends Control
 # Quest Screen for Azamane - Moroccan Time Capsule
 # Handles individual quest interactions and riddles
 
-@onready var quest_title = $UI/QuestPanel/VBoxContainer/QuestTitle
-@onready var quest_description = $UI/QuestPanel/VBoxContainer/QuestDescription
+@onready var quest_title = $UI/QuestPanel/QuestTitle
+@onready var quest_description = $UI/QuestPanel/QuestDescription
 @onready var riddle_text = $UI/QuestPanel/VBoxContainer/RiddleText
 @onready var option_a = $UI/QuestPanel/VBoxContainer/OptionsContainer/OptionA
 @onready var option_b = $UI/QuestPanel/VBoxContainer/OptionsContainer/OptionB
@@ -104,59 +104,182 @@ func highlight_selected_option(option_index: int):
 # Option button handlers
 func _on_option_a_pressed():
 	print("Option A selected")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	highlight_selected_option(0)
 
 func _on_option_b_pressed():
 	print("Option B selected")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	highlight_selected_option(1)
 
 func _on_option_c_pressed():
 	print("Option C selected")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	highlight_selected_option(2)
 
 func _on_submit_button_pressed():
 	if selected_option == -1:
 		return
-	
+
 	print("Submitting answer: ", selected_option)
-	
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	# Disable buttons during processing
 	submit_button.disabled = true
 	option_a.disabled = true
 	option_b.disabled = true
 	option_c.disabled = true
-	
+
 	# Process the answer
 	var result = GameManager.answer_quest(current_quest_id, selected_option)
 	show_quest_result(result)
 
 func show_quest_result(result: Dictionary):
-	# Create result popup
-	var popup = AcceptDialog.new()
-	
+	# Play correct answer sound if the answer was correct
+	if result.success and AudioManager:
+		AudioManager.play_correct_answer_sound()
+
+	# Create custom styled result panel
+	create_custom_result_panel(result)
+
+func create_custom_result_panel(result: Dictionary):
+	# Create overlay background
+	var overlay = ColorRect.new()
+	overlay.color = Color(0, 0, 0, 0.7)  # Semi-transparent black
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.mouse_filter = Control.MOUSE_FILTER_STOP  # Block input to background
+	add_child(overlay)
+
+	# Create main panel using game assets
+	var panel = NinePatchRect.new()
+	var panel_texture = load("res://assets/sprites/largel_panel_256x128.png")
+	if panel_texture:
+		panel.texture = panel_texture
+		panel.patch_margin_left = 32
+		panel.patch_margin_top = 32
+		panel.patch_margin_right = 32
+		panel.patch_margin_bottom = 32
+
+	# Center the panel
+	panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	panel.size = Vector2(600, 400)
+	panel.position = Vector2(-300, -200)  # Center it
+	overlay.add_child(panel)
+
+	# Create content container
+	var content_container = VBoxContainer.new()
+	content_container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	content_container.add_theme_constant_override("separation", 20)
+	content_container.offset_left = 40
+	content_container.offset_top = 40
+	content_container.offset_right = -40
+	content_container.offset_bottom = -40
+	panel.add_child(content_container)
+
+	# Add title
+	var title_label = Label.new()
 	if result.success:
-		popup.title = "Quest Completed! ✅"
-		var content = "Correct! Well done, Amziane!\n\n"
-		content += "Cultural Insight: " + result.lore + "\n\n"
-		
+		title_label.text = "Quest Completed! ✅"
+		title_label.add_theme_color_override("font_color", Color("#D4A017"))  # Gold
+	else:
+		title_label.text = "Try Again 🤔"
+		title_label.add_theme_color_override("font_color", Color("#8B5523"))  # Brown
+
+	title_label.add_theme_font_size_override("font_size", 28)
+	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	content_container.add_child(title_label)
+
+	# Add spacer
+	var spacer1 = Control.new()
+	spacer1.custom_minimum_size = Vector2(0, 20)
+	content_container.add_child(spacer1)
+
+	# Add main content
+	var content_label = RichTextLabel.new()
+	content_label.bbcode_enabled = true
+	content_label.fit_content = true
+	content_label.add_theme_color_override("default_color", Color("#2A3F7B"))  # Blue
+	content_label.add_theme_font_size_override("normal_font_size", 18)
+
+	var content_text = ""
+	if result.success:
+		content_text = "[center]Correct! Well done, Amziane![/center]\n\n"
+		content_text += "[color=#355E3B]Cultural Insight:[/color] " + result.lore + "\n\n"
+
 		if result.has("collectible"):
-			content += "You received: " + result.collectible + "\n"
-			content += "Added to your time capsule!"
-		
-		popup.dialog_text = content
+			content_text += "[color=#D4A017]You received: " + result.collectible + "[/color]\n"
+			content_text += "[center][i]Added to your time capsule![/i][/center]"
 	else:
-		popup.title = "Try Again 🤔"
-		popup.dialog_text = "That's not quite right. Think about the desert and its mysteries...\n\nCultural Insight: " + result.lore
-	
-	popup.size = Vector2(500, 300)
-	add_child(popup)
-	popup.popup_centered()
-	
-	# Handle popup closure
+		content_text = "[center]That's not quite right. Think about the desert and its mysteries...[/center]\n\n"
+		content_text += "[color=#355E3B]Cultural Insight:[/color] " + result.lore
+
+	content_label.text = content_text
+	content_container.add_child(content_label)
+
+	# Add spacer
+	var spacer2 = Control.new()
+	spacer2.custom_minimum_size = Vector2(0, 20)
+	content_container.add_child(spacer2)
+
+	# Add continue button
+	var continue_button = Button.new()
 	if result.success:
-		popup.confirmed.connect(_on_quest_completed)
+		continue_button.text = "Continue to Map"
 	else:
-		popup.confirmed.connect(_on_quest_retry)
+		continue_button.text = "Try Again"
+
+	continue_button.add_theme_color_override("font_color", Color("#2A3F7B"))  # Blue
+	continue_button.add_theme_font_size_override("font_size", 20)
+	continue_button.custom_minimum_size = Vector2(200, 50)
+	continue_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	content_container.add_child(continue_button)
+
+	# Add panel entrance animation
+	panel.scale = Vector2(0.8, 0.8)
+	panel.modulate.a = 0.0
+	overlay.modulate.a = 0.0
+
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(overlay, "modulate:a", 1.0, 0.3)
+	tween.tween_property(panel, "scale", Vector2(1.0, 1.0), 0.3)
+	tween.tween_property(panel, "modulate:a", 1.0, 0.3)
+
+	# Connect button signal
+	if result.success:
+		continue_button.pressed.connect(func(): _close_result_panel(overlay, true))
+	else:
+		continue_button.pressed.connect(func(): _close_result_panel(overlay, false))
+
+func _close_result_panel(overlay: Control, success: bool):
+	# Add exit animation
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(overlay, "modulate:a", 0.0, 0.2)
+
+	await tween.finished
+	overlay.queue_free()
+
+	# Handle next action
+	if success:
+		_on_quest_completed()
+	else:
+		_on_quest_retry()
 
 func _on_quest_completed():
 	# Quest was successful, return to map
@@ -175,13 +298,17 @@ func _on_quest_retry():
 
 func _on_back_button_pressed():
 	print("Back button pressed")
-	
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	# Add button press feedback
 	var tween = create_tween()
 	tween.tween_property(back_button, "scale", Vector2(0.95, 0.95), 0.1)
 	tween.tween_property(back_button, "scale", Vector2(1.0, 1.0), 0.1)
-	
+
 	await tween.finished
-	
+
 	# Return to map without completing quest
 	GameManager.change_scene("MapScreen")

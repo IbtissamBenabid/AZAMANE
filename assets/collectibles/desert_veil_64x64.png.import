@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bftwufqts8p3v"
-path="res://.godot/imported/hotspot_marker_64x64.png-b7bf03971852d2fa446b0ca2a0fe623d.ctex"
+uid="uid://d0c34bees17vp"
+path="res://.godot/imported/desert_veil_64x64.png-c26bcfa5da58bd580551fd2170173ada.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/hotspot_marker_64x64.png"
-dest_files=["res://.godot/imported/hotspot_marker_64x64.png-b7bf03971852d2fa446b0ca2a0fe623d.ctex"]
+source_file="res://assets/collectibles/desert_veil_64x64.png"
+dest_files=["res://.godot/imported/desert_veil_64x64.png-c26bcfa5da58bd580551fd2170173ada.ctex"]
 
 [params]
 

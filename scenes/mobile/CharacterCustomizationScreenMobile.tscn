@@ -1,0 +1,139 @@
+[gd_scene load_steps=6 format=3 uid="uid://fl25ito7vg653"]
+
+[ext_resource type="Script" path="res://scripts/CharacterCustomizationScreen.gd" id="1_2k8vr"]
+[ext_resource type="Texture2D" uid="uid://bk1yqof0wr1el" path="res://assets/backgrounds/character_creation_640x360.png" id="2_8w3yu"]
+[ext_resource type="Texture2D" uid="uid://dtf113l7ymxau" path="res://assets/sprites/largel_panel_256x128.png" id="3_panel"]
+[ext_resource type="Texture2D" uid="uid://bxcjde1m1dejk" path="res://assets/sprites/long_button_orange_256x128.png" id="4_orange_button"]
+[ext_resource type="Texture2D" uid="uid://dpmhvr81v1g34" path="res://assets/sprites/solo_blue_player_standing_128x128.png" id="5_blue_male"]
+
+[node name="CharacterCustomizationScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2k8vr")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8w3yu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 28
+text = "Choose Your Character"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="CharacterPreview" type="NinePatchRect" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 300)
+texture = ExtResource("3_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="PreviewTitle" type="Label" parent="UI/ScrollContainer/VBoxContainer/CharacterPreview"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 20
+text = "Preview"
+horizontal_alignment = 1
+
+[node name="CharacterSprite" type="TextureRect" parent="UI/ScrollContainer/VBoxContainer/CharacterPreview"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -100.0
+offset_right = 220.0
+offset_bottom = 100.0
+grow_vertical = 2
+texture = ExtResource("5_blue_male")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer2" type="Control" parent="UI/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+add_theme_constant_override("separation", 20)
+
+[node name="FemaleButton" type="Button" parent="UI/ScrollContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 80)
+theme_override_colors/font_color = Color(0.847059, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Female Character"
+flat = true
+
+[node name="MaleButton" type="Button" parent="UI/ScrollContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 80)
+theme_override_colors/font_color = Color(0.255642, 0.730473, 0.841014, 1)
+theme_override_font_sizes/font_size = 24
+text = "Male Character"
+flat = true
+
+[node name="Spacer3" type="Control" parent="UI/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="InstructionLabel" type="Label" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 16
+text = "Click on a character to select and continue"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="UI/ScrollContainer/VBoxContainer/ButtonsContainer/FemaleButton" to="." method="_on_female_button_pressed"]
+[connection signal="pressed" from="UI/ScrollContainer/VBoxContainer/ButtonsContainer/MaleButton" to="." method="_on_male_button_pressed"]

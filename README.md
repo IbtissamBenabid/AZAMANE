@@ -64,8 +64,8 @@ A text-based, narrative-driven 2D game exploring Morocco's 7th-century multicult
 - **Trust Level** progression (Low → Medium → High)
 - **Collectibles** for time capsule:
   - Desert Veil
-  - Salt Crystal
-  - Carved Staff
+  - Sacred Compass
+  - Storyteller's Token
 
 ## 🛠️ Technical Details
 

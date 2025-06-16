@@ -84,6 +84,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/font_size = 18
 text = "Option A"
+flat = true
 
 [node name="OptionSpacer1" type="Control" parent="UI/QuestPanel/VBoxContainer/OptionsContainer"]
 custom_minimum_size = Vector2(0, 10)
@@ -94,6 +95,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/font_size = 18
 text = "Option B"
+flat = true
 
 [node name="OptionSpacer2" type="Control" parent="UI/QuestPanel/VBoxContainer/OptionsContainer"]
 custom_minimum_size = Vector2(0, 10)
@@ -104,6 +106,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/font_size = 18
 text = "Option C"
+flat = true
 
 [node name="Spacer4" type="Control" parent="UI/QuestPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -118,6 +121,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
 theme_override_font_sizes/font_size = 18
 text = "Back to Map"
+flat = true
 
 [node name="Spacer" type="Control" parent="UI/QuestPanel/VBoxContainer/ButtonContainer"]
 custom_minimum_size = Vector2(20, 0)
@@ -126,10 +130,11 @@ layout_mode = 2
 [node name="SubmitButton" type="Button" parent="UI/QuestPanel/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_colors/font_color = Color(0.460787, 0.342185, 0.0315894, 1)
 theme_override_font_sizes/font_size = 18
 disabled = true
 text = "Submit Answer"
+flat = true
 
 [node name="QuestDescription" type="RichTextLabel" parent="UI/QuestPanel"]
 layout_mode = 2

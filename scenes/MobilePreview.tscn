@@ -1,0 +1,158 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqg3dgik7ra11"]
+
+[ext_resource type="Script" uid="uid://ckvu0lfw5oer1" path="res://scripts/MobilePreview.gd" id="1_mobile_preview"]
+
+[node name="MobilePreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mobile_preview")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="Controls" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -200.0
+offset_right = 400.0
+offset_bottom = -20.0
+grow_vertical = 0
+
+[node name="Title" type="Label" parent="Controls"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "AZAMANE Mobile Preview"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="Controls"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="DeviceContainer" type="HBoxContainer" parent="Controls"]
+layout_mode = 2
+
+[node name="DeviceLabel" type="Label" parent="Controls/DeviceContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+text = "Device:"
+
+[node name="DeviceSelector" type="OptionButton" parent="Controls/DeviceContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SceneContainer" type="HBoxContainer" parent="Controls"]
+layout_mode = 2
+
+[node name="SceneLabel" type="Label" parent="Controls/SceneContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+text = "Scene:"
+
+[node name="SceneSelector" type="OptionButton" parent="Controls/SceneContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OrientationButtons" type="HBoxContainer" parent="Controls"]
+layout_mode = 2
+
+[node name="PortraitBtn" type="Button" parent="Controls/OrientationButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Portrait"
+
+[node name="LandscapeBtn" type="Button" parent="Controls/OrientationButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Landscape"
+
+[node name="OptionsContainer" type="HBoxContainer" parent="Controls"]
+layout_mode = 2
+
+[node name="TouchSimBtn" type="CheckButton" parent="Controls/OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Touch Simulation"
+
+[node name="AutoAdaptBtn" type="CheckButton" parent="Controls/OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Auto Mobile Adapt"
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="Controls"]
+layout_mode = 2
+
+[node name="ResetBtn" type="Button" parent="Controls/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Reset"
+
+[node name="DeviceFrame" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -400.0
+offset_right = 200.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameViewport" type="SubViewport" parent="DeviceFrame"]
+
+[node name="DeviceLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Device: iPhone 12 (Portrait)"
+horizontal_alignment = 2
+
+[node name="SceneStatusLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 70.0
+offset_right = -20.0
+offset_bottom = 110.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Scene: Welcome Screen"
+horizontal_alignment = 2
+
+[connection signal="item_selected" from="Controls/DeviceContainer/DeviceSelector" to="." method="_on_device_selected"]
+[connection signal="item_selected" from="Controls/SceneContainer/SceneSelector" to="." method="_on_scene_selected"]
+[connection signal="pressed" from="Controls/OrientationButtons/PortraitBtn" to="." method="_on_portrait_pressed"]
+[connection signal="pressed" from="Controls/OrientationButtons/LandscapeBtn" to="." method="_on_landscape_pressed"]
+[connection signal="toggled" from="Controls/OptionsContainer/TouchSimBtn" to="." method="_on_touch_sim_toggled"]
+[connection signal="toggled" from="Controls/OptionsContainer/AutoAdaptBtn" to="." method="_on_auto_adapt_toggled"]
+[connection signal="pressed" from="Controls/ButtonsContainer/ResetBtn" to="." method="_on_reset_pressed"]

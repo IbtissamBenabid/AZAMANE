@@ -1,0 +1,165 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8yxqkqxr2bxv7"]
+
+[ext_resource type="Script" path="res://scripts/QuestScreen.gd" id="1_quest"]
+[ext_resource type="Texture2D" uid="uid://drl6bk3i6g3xi" path="res://assets/backgrounds/narrative_scroll_640x360.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://dtf113l7ymxau" path="res://assets/sprites/largel_panel_256x128.png" id="3_panel"]
+
+[node name="QuestScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_quest")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuestPanel" type="NinePatchRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/QuestPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/QuestPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+add_theme_constant_override("separation", 20)
+
+[node name="QuestTitle" type="Label" parent="UI/QuestPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -80.0
+offset_right = 200.0
+offset_bottom = -50.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 20
+text = "Quest Title"
+horizontal_alignment = 1
+
+[node name="QuestDescription" type="RichTextLabel" parent="UI/QuestPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -50.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "Quest description will appear here..."
+fit_content = true
+
+[node name="RiddleText" type="RichTextLabel" parent="UI/QuestPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Riddle text will appear here..."
+fit_content = true
+
+[node name="OptionsContainer" type="VBoxContainer" parent="UI/QuestPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+add_theme_constant_override("separation", 15)
+
+[node name="OptionA" type="Button" parent="UI/QuestPanel/ScrollContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 16
+text = "Option A"
+flat = true
+
+[node name="OptionB" type="Button" parent="UI/QuestPanel/ScrollContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 16
+text = "Option B"
+flat = true
+
+[node name="OptionC" type="Button" parent="UI/QuestPanel/ScrollContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 16
+text = "Option C"
+flat = true
+
+[node name="ButtonContainer" type="HBoxContainer" parent="UI/QuestPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+add_theme_constant_override("separation", 20)
+
+[node name="BackButton" type="Button" parent="UI/QuestPanel/ScrollContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 50)
+theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
+theme_override_font_sizes/font_size = 16
+text = "Back to Map"
+flat = true
+
+[node name="SubmitButton" type="Button" parent="UI/QuestPanel/ScrollContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 50)
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 16
+disabled = true
+text = "Submit Answer"
+flat = true
+
+[connection signal="pressed" from="UI/QuestPanel/ScrollContainer/VBoxContainer/OptionsContainer/OptionA" to="." method="_on_option_a_pressed"]
+[connection signal="pressed" from="UI/QuestPanel/ScrollContainer/VBoxContainer/OptionsContainer/OptionB" to="." method="_on_option_b_pressed"]
+[connection signal="pressed" from="UI/QuestPanel/ScrollContainer/VBoxContainer/OptionsContainer/OptionC" to="." method="_on_option_c_pressed"]
+[connection signal="pressed" from="UI/QuestPanel/ScrollContainer/VBoxContainer/ButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="UI/QuestPanel/ScrollContainer/VBoxContainer/ButtonContainer/SubmitButton" to="." method="_on_submit_button_pressed"]

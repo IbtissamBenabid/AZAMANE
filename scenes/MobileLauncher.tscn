@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm8k3xqp7vn2c"]
+
+[ext_resource type="Script" uid="uid://dhwve0u3e1a51" path="res://scripts/MobileLauncher.gd" id="1_launcher"]
+
+[node name="MobileLauncher" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_launcher")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.165, 0.247, 0.482, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 36
+text = "AZAMANE - Moroccan Time Capsule"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Description" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Choose how you want to experience the game:"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ButtonContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MobilePreviewBtn" type="Button" parent="VBoxContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 24
+text = "Mobile Preview Mode"
+
+[node name="Spacer3" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Instructions" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "Keyboard shortcuts: 1 = Normal Game, 2 = Mobile Preview, ESC = Quit"
+horizontal_alignment = 1

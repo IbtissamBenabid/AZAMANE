@@ -227,19 +227,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 20.0
-offset_right = -40.0
-offset_bottom = -20.0
+offset_left = 44.0
+offset_top = 38.0
+offset_right = -39.0
+offset_bottom = 83.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Instructions" type="Label" parent="UI/BottomPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 14
-text = "Click on locations to start quests and earn Culture Points!"
-horizontal_alignment = 1
 
 [node name="TimeCapsuleButton" type="TextureButton" parent="UI/BottomPanel/VBoxContainer"]
 custom_minimum_size = Vector2(256, 64)
@@ -253,10 +246,10 @@ anchors_preset = -1
 anchor_left = 0.035
 anchor_right = 0.965
 anchor_bottom = 0.5
-offset_left = -9.0
-offset_top = -10.0
-offset_right = 9.0
-offset_bottom = 2.0
+offset_left = -6.95999
+offset_top = -6.0
+offset_right = 11.04
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)

@@ -8,6 +8,11 @@ extends Control
 
 func _ready():
 	print("Amziane Introduction Screen loaded")
+
+	# Start rehab background music
+	if AudioManager:
+		AudioManager.fade_in_background_music("rehab", 2.0)
+
 	load_character_sprite()
 
 func load_character_sprite():
@@ -49,6 +54,10 @@ func animate_character_entrance():
 func _on_next_button_pressed():
 	print("Next button pressed - moving to Map Screen")
 
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	# Add button press feedback
 	var tween = create_tween()
 	tween.tween_property(next_button, "scale", Vector2(0.95, 0.95), 0.1)
@@ -56,5 +65,14 @@ func _on_next_button_pressed():
 
 	await tween.finished
 
+	# Fade out background music before scene change
+	if AudioManager:
+		AudioManager.fade_out_background_music(1.0)
+
 	# Transition to Map Screen
 	GameManager.change_scene("MapScreen")
+
+# Handler for mobile continue button (same functionality as next button)
+func _on_continue_button_pressed():
+	print("Continue button pressed - moving to Map Screen")
+	_on_next_button_pressed()

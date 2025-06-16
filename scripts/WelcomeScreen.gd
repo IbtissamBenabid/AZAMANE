@@ -5,6 +5,7 @@ extends Control
 
 @onready var title_label = $UI/TitleContainer/GameTitle
 @onready var start_button = $UI/TitleContainer/StartButton
+@onready var start_button_label = $UI/TitleContainer/StartButton/ButtonLabel
 @onready var animation_player = $AnimationPlayer
 
 var tween: Tween
@@ -12,13 +13,18 @@ var tween: Tween
 func _ready():
 	print("Welcome Screen loaded")
 
+	# Start desert wind background music
+	if AudioManager:
+		AudioManager.fade_in_background_music("desert", 2.0)
+
 	# Apply mobile adaptations
 	adapt_for_mobile()
 
 	# Debug: Check if button exists and is connected
 	if start_button:
 		print("Start button found: ", start_button.name)
-		print("Button text: ", start_button.text)
+		if start_button_label:
+			print("Button text: ", start_button_label.text)
 		print("Button disabled: ", start_button.disabled)
 		print("Button visible: ", start_button.visible)
 		print("Button mouse filter: ", start_button.mouse_filter)
@@ -104,6 +110,10 @@ func play_title_animation():
 func _on_start_button_pressed():
 	print("Start button pressed")
 
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	# Debug: Check if GameManager exists
 	if GameManager:
 		print("GameManager found")
@@ -123,6 +133,10 @@ func _on_start_button_pressed():
 	await tween.finished
 
 	print("About to change scene to GameDescriptionScreen")
+
+	# Fade out background music before scene change
+	if AudioManager:
+		AudioManager.fade_out_background_music(1.0)
 
 	# Transition to Game Description Screen
 	GameManager.change_scene("GameDescriptionScreen")
@@ -160,9 +174,9 @@ func adapt_for_mobile():
 		return
 
 	# Specific adaptations for welcome screen
-	if start_button:
+	if start_button_label:
 		# Increase font size for mobile
-		start_button.add_theme_font_size_override("font_size", 20)
+		start_button_label.add_theme_font_size_override("font_size", 20)
 
 	# Adapt title for mobile
 	if title_label:

@@ -1,0 +1,129 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8yxqkqxr2bxv4"]
+
+[ext_resource type="Script" path="res://scripts/RulesScreen.gd" id="1_rules"]
+[ext_resource type="Texture2D" uid="uid://drl6bk3i6g3xi" path="res://assets/backgrounds/narrative_scroll_640x360.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://u1obxkguj7eq" path="res://assets/sprites/long_button_256x128.png" id="3_button"]
+
+[node name="RulesScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rules")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 28
+text = "Game Rules"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="RulesText" type="RichTextLabel" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center][color=#D4A017]How to Play AZAMANE[/color][/center]
+
+[b]🎯 Objective:[/b]
+Explore Morocco's desert, solve riddles, and collect cultural treasures for your time capsule.
+
+[b]🗺️ Navigation:[/b]
+• Move around the map by clicking on quest locations
+• Each location offers unique cultural challenges
+
+[b]🧩 Quests:[/b]
+• Read riddles carefully - they contain cultural clues
+• Choose the correct answer from three options
+• Learn about Moroccan heritage with each quest
+
+[b]🏆 Rewards:[/b]
+• Earn [color=#D4A017]Culture Points[/color] for correct answers
+• Collect [color=#355E3B]Cultural Artifacts[/color] for your time capsule
+• Unlock deeper lore about Morocco's rich history
+
+[b]💡 Tips:[/b]
+• Take your time to read each riddle
+• Cultural insights are provided with each answer
+• Build your collection of Moroccan treasures!"
+fit_content = true
+
+[node name="Spacer2" type="Control" parent="UI/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="NextButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 20
+text = "Start Adventure"
+flat = true
+
+[node name="ButtonLabel" type="Label" parent="UI/NextButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 20
+text = "Start Adventure"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UI/NextButton" to="." method="_on_next_button_pressed"]

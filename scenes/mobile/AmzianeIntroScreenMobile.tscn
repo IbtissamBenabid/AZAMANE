@@ -1,0 +1,165 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8yxqkqxr2bxv5"]
+
+[ext_resource type="Script" path="res://scripts/AmzianeIntroScreen.gd" id="1_amziane"]
+[ext_resource type="Texture2D" uid="uid://bk1yqof0wr1el" path="res://assets/backgrounds/character_creation_640x360.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://dtf113l7ymxau" path="res://assets/sprites/largel_panel_256x128.png" id="3_panel"]
+[ext_resource type="Texture2D" uid="uid://dpmhvr81v1g34" path="res://assets/sprites/solo_blue_player_standing_128x128.png" id="4_character"]
+
+[node name="AmzianeIntroScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_amziane")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 28
+text = "Meet Amziane"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="CharacterPanel" type="NinePatchRect" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 300)
+texture = ExtResource("3_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="CharacterSprite" type="TextureRect" parent="UI/ScrollContainer/VBoxContainer/CharacterPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -100.0
+offset_right = 220.0
+offset_bottom = 100.0
+grow_vertical = 2
+texture = ExtResource("4_character")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DescriptionContainer" type="VBoxContainer" parent="UI/ScrollContainer/VBoxContainer/CharacterPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -120.0
+offset_right = -20.0
+offset_bottom = 120.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="NameLabel" type="Label" parent="UI/ScrollContainer/VBoxContainer/CharacterPanel/DescriptionContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 24
+text = "Amziane"
+horizontal_alignment = 1
+
+[node name="RoleLabel" type="Label" parent="UI/ScrollContainer/VBoxContainer/CharacterPanel/DescriptionContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 18
+text = "Desert Guide & Storyteller"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="UI/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="StoryText" type="RichTextLabel" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center][color=#D4A017]Welcome, traveler![/color][/center]
+
+I am [color=#355E3B]Amziane[/color], your guide through the mystical Moroccan desert. Born under the desert stars, I carry the wisdom of ancient Berber traditions and the stories of countless generations.
+
+[b]My Role:[/b]
+• Guide you through sacred desert locations
+• Share riddles that test your cultural knowledge
+• Help you discover Morocco's rich heritage
+• Protect the ancient stories of our people
+
+[b]Our Journey:[/b]
+Together, we will explore the vast Sahara, meet desert dwellers, solve ancient riddles, and collect precious artifacts for your time capsule.
+
+The desert holds many secrets, and each quest will reveal the beauty of Moroccan culture - from Amazigh traditions to Arab influences, from ancient trade routes to mystical tales.
+
+[center][i]Are you ready to begin this cultural adventure?[/i][/center]"
+fit_content = true
+
+[node name="Spacer3" type="Control" parent="UI/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 20
+text = "Begin Journey"
+flat = true
+
+[connection signal="pressed" from="UI/ContinueButton" to="." method="_on_continue_button_pressed"]

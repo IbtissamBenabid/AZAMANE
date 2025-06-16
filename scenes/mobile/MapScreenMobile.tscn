@@ -1,0 +1,217 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8yxqkqxr2bxv6"]
+
+[ext_resource type="Script" path="res://scripts/MapScreen.gd" id="1_map"]
+[ext_resource type="Texture2D" uid="uid://b8k3xqp7vn2c1" path="res://assets/backgrounds/desert_map_640x360.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://dtf113l7ymxau" path="res://assets/sprites/largel_panel_256x128.png" id="3_panel"]
+[ext_resource type="Texture2D" uid="uid://dpmhvr81v1g34" path="res://assets/sprites/solo_blue_player_standing_128x128.png" id="4_character"]
+[ext_resource type="Texture2D" uid="uid://u1obxkguj7eq" path="res://assets/sprites/long_button_256x128.png" id="5_button"]
+[ext_resource type="Texture2D" uid="uid://bxcjde1m1dejk" path="res://assets/sprites/long_button_orange_256x128.png" id="6_orange_button"]
+[ext_resource type="Texture2D" path="res://assets/collectibles/hotspot_marker_64x64.png" id="7_marker"]
+
+[node name="MapScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_map")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopPanel" type="NinePatchRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -120.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_vertical = 0
+texture = ExtResource("3_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="StatsContainer" type="HBoxContainer" parent="UI/TopPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CulturePointsLabel" type="Label" parent="UI/TopPanel/StatsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 18
+text = "Culture Points: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeCapsuleButton" type="Button" parent="UI/TopPanel/StatsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 16
+text = "Time Capsule"
+flat = true
+
+[node name="CharacterSprite" type="TextureRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_character")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuestLocations" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TradersRiddle" type="Button" parent="UI/QuestLocations"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 100.0
+offset_right = -20.0
+offset_bottom = 180.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 14
+text = "Trader's Riddle"
+flat = true
+
+[node name="CamelTrack" type="Button" parent="UI/QuestLocations"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 200.0
+offset_right = 120.0
+offset_bottom = 280.0
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 14
+text = "Camel Track"
+flat = true
+
+[node name="BerberTale" type="Button" parent="UI/QuestLocations"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -280.0
+offset_right = -20.0
+offset_bottom = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 14
+text = "Berber Tale"
+flat = true
+
+[node name="TimeCapsulePanel" type="NinePatchRect" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="CloseButton" type="Button" parent="UI/TimeCapsulePanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
+theme_override_font_sizes/font_size = 16
+text = "X"
+flat = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/TimeCapsulePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TreasuresList" type="RichTextLabel" parent="UI/TimeCapsulePanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[center][color=#D4A017]Your collected treasures will appear here...[/color][/center]
+
+[center]Complete quests to add items to your time capsule![/center]"
+fit_content = true
+
+[connection signal="pressed" from="UI/TopPanel/StatsContainer/TimeCapsuleButton" to="." method="_on_time_capsule_button_pressed"]
+[connection signal="pressed" from="UI/QuestLocations/TradersRiddle" to="." method="_on_traders_riddle_pressed"]
+[connection signal="pressed" from="UI/QuestLocations/CamelTrack" to="." method="_on_camel_track_pressed"]
+[connection signal="pressed" from="UI/QuestLocations/BerberTale" to="." method="_on_berber_tale_pressed"]
+[connection signal="pressed" from="UI/TimeCapsulePanel/CloseButton" to="." method="_on_time_capsule_panel_close_pressed"]

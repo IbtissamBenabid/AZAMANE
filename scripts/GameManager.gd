@@ -217,31 +217,19 @@ func set_player_accessory(accessory: String, color: String = "gold"):
 	print("Player accessory set to: ", accessory, " (", color, ")")
 
 func get_player_sprite_path() -> String:
-	# Return the appropriate sprite based on gender and clothing selection
-	# Use PNG sprites for better performance and consistency
-	if player_data.clothing == "tunic":
-		if player_data.gender == "Female":
-			return "res://assets/sprites/red_female_player_standing_128x128.png"
-		else:
-			return "res://assets/sprites/blue_player_standing_128x128.png"
-	elif player_data.clothing_color == "green":
-		if player_data.gender == "Female":
-			return "res://assets/sprites/red_female_player_standing_128x128.png"
-		else:
-			return "res://assets/sprites/green_player_standing_128x128.png"
+	# Return the appropriate solo sprite based on gender selection
+	# Use solo PNG sprites for better visual consistency on the map
+	if player_data.gender == "Female":
+		return "res://assets/sprites/solo_red_female_player_standing_128x128.png"
 	else:
-		# Default to blue player sprite
-		if player_data.gender == "Female":
-			return "res://assets/sprites/red_female_player_standing_128x128.png"
-		else:
-			return "res://assets/sprites/blue_player_standing_128x128.png"
+		return "res://assets/sprites/solo_blue_player_standing_128x128.png"
 
 func get_amziane_sprite_path() -> String:
-	# Return Amziane sprite - always use PNG for consistency
+	# Return Amziane sprite - use solo sprites for consistency
 	if player_data.gender == "Female":
-		return "res://assets/sprites/red_female_player_standing_128x128.png"
+		return "res://assets/sprites/solo_red_female_player_standing_128x128.png"
 	else:
-		return "res://assets/sprites/amziane_128x128.png"
+		return "res://assets/sprites/solo_blue_player_standing_128x128.png"
 
 # Quest system
 func start_quest(quest_id: String) -> Dictionary:
@@ -308,13 +296,13 @@ func get_quest_collectible(quest_id: String) -> Dictionary:
 			}
 		"camel_track":
 			return {
-				"name": "Water Gourd",
-				"lore": "A leather water container used by desert travelers, decorated with protective symbols and blessed by oasis spirits."
+				"name": "Sacred Compass",
+				"lore": "An ancient navigation tool used by desert nomads, its mystical properties help travelers find their way through endless dunes."
 			}
 		"berber_tale":
 			return {
-				"name": "Berber Amulet",
-				"lore": "A silver amulet inscribed with ancient Tifinagh script, said to carry the wisdom of storytellers through generations."
+				"name": "Storyteller's Token",
+				"lore": "A ceremonial marker passed down through generations of Berber storytellers, symbolizing the keeper of ancient tales."
 			}
 		_:
 			return {"name": "", "lore": ""}

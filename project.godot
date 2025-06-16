@@ -22,6 +22,7 @@ GameManager="*res://scripts/GameManager.gd"
 VisualEffects="*res://scripts/VisualEffects.gd"
 MobileInputHandler="*res://scripts/MobileInputHandler.gd"
 MobileUIManager="*res://scripts/MobileUIManager.gd"
+AudioManager="*res://scripts/AudioManager.gd"
 
 [display]
 

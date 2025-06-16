@@ -27,6 +27,11 @@ var base_character_position: Vector2
 
 func _ready():
 	print("Map Screen loaded")
+
+	# Start desert wind background music
+	if AudioManager:
+		AudioManager.fade_in_background_music("desert", 2.0)
+
 	adapt_for_mobile()
 	setup_character()
 	update_ui()
@@ -143,14 +148,29 @@ func _on_trust_level_changed(new_level: String):
 # Quest button handlers
 func _on_trade_stall_button_pressed():
 	print("Trade Stall button pressed - showing panel")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	show_trade_stall_panel()
 
 func _on_oasis_path_button_pressed():
 	print("Oasis Path button pressed - showing panel")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	show_oasis_path_panel()
 
 func _on_caravan_camp_button_pressed():
 	print("Caravan Camp button pressed - showing panel")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	show_caravan_camp_panel()
 
 func start_quest(quest_id: String, _location_name: String):
@@ -172,6 +192,11 @@ func start_quest(quest_id: String, _location_name: String):
 
 	# Store current quest info and transition to quest scene
 	GameManager.game_state.current_quest = quest_id
+
+	# Fade out background music before scene change
+	if AudioManager:
+		AudioManager.fade_out_background_music(1.0)
+
 	GameManager.change_scene("QuestScreen")
 
 func move_character_to_quest(target_button: BaseButton):
@@ -221,6 +246,11 @@ func get_quest_button(quest_id: String) -> BaseButton:
 
 func _on_time_capsule_button_pressed():
 	print("Time Capsule button pressed - showing panel")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	show_time_capsule_panel()
 
 # Mobile adaptation function
@@ -295,23 +325,170 @@ func update_treasures_list():
 	if not treasures_list:
 		return
 
-	var content = ""
+	# Clear existing content
+	for child in treasures_list.get_parent().get_children():
+		if child != treasures_list:
+			child.queue_free()
 
 	if GameManager.time_capsule.is_empty():
-		content = "[center][color=#D4A017]Your collected treasures will appear here...[/color][/center]\n\n"
+		var content = "[center][color=#D4A017]Your collected treasures will appear here...[/color][/center]\n\n"
 		content += "[center]Complete quests to add items to your time capsule![/center]"
+		treasures_list.text = content
 	else:
-		content = "[center][color=#D4A017]Your Collected Treasures[/color][/center]\n\n"
+		# Create a container for collectibles with images
+		create_visual_treasures_display()
 
-		for item_name in GameManager.time_capsule:
-			var lore = GameManager.time_capsule[item_name]
-			content += "[b]• " + item_name + "[/b]\n"
-			content += "[color=#355E3B]" + lore + "[/color]\n\n"
+func create_visual_treasures_display():
+	# Hide the default text display
+	treasures_list.visible = false
 
-	treasures_list.text = content
+	# Create a new container for visual display
+	var scroll_container = treasures_list.get_parent()
+	var visual_container = VBoxContainer.new()
+	visual_container.name = "VisualTreasuresContainer"
+	scroll_container.add_child(visual_container)
+
+	# Add title
+	var title_label = Label.new()
+	title_label.text = "Your Collected Treasures"
+	title_label.add_theme_color_override("font_color", Color("#D4A017"))  # Gold
+	title_label.add_theme_font_size_override("font_size", 20)
+	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	visual_container.add_child(title_label)
+
+	# Add spacer
+	var spacer = Control.new()
+	spacer.custom_minimum_size = Vector2(0, 20)
+	visual_container.add_child(spacer)
+
+	# Add each collectible with image and description
+	for item_name in GameManager.time_capsule:
+		var lore = GameManager.time_capsule[item_name]
+		create_collectible_entry(visual_container, item_name, lore)
+
+func create_collectible_entry(container: VBoxContainer, item_name: String, lore: String):
+	# Create horizontal container for image and text
+	var item_container = HBoxContainer.new()
+	item_container.add_theme_constant_override("separation", 15)
+	container.add_child(item_container)
+
+	# Add collectible image
+	var image_rect = TextureRect.new()
+	image_rect.custom_minimum_size = Vector2(64, 64)
+	image_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	image_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+
+	# Load appropriate texture based on item name
+	image_rect.texture = get_collectible_texture(item_name)
+
+	item_container.add_child(image_rect)
+
+	# Add text container
+	var text_container = VBoxContainer.new()
+	text_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	item_container.add_child(text_container)
+
+	# Add item name
+	var name_label = Label.new()
+	name_label.text = item_name
+	name_label.add_theme_color_override("font_color", Color("#2A3F7B"))  # Blue
+	name_label.add_theme_font_size_override("font_size", 18)
+	text_container.add_child(name_label)
+
+	# Add lore description
+	var lore_label = Label.new()
+	lore_label.text = lore
+	lore_label.add_theme_color_override("font_color", Color("#355E3B"))  # Green
+	lore_label.add_theme_font_size_override("font_size", 14)
+	lore_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	text_container.add_child(lore_label)
+
+	# Add spacer between items
+	var item_spacer = Control.new()
+	item_spacer.custom_minimum_size = Vector2(0, 15)
+	container.add_child(item_spacer)
+
+func get_collectible_image_path(item_name: String) -> String:
+	# Map collectible names to their image paths
+	match item_name:
+		"Desert Veil":
+			return "res://assets/collectibles/desert_veil_64x64.png"
+		"Sacred Compass":
+			return "res://assets/collectibles/hotspot_marker_64x64.png"
+		"Storyteller's Token":
+			# Create a unique visual for the storyteller's token
+			return create_storyteller_token_texture()
+		_:
+			return ""
+
+func create_storyteller_token_texture() -> String:
+	# Create a unique texture for the storyteller's token
+	# This will be a golden circular token with Berber-inspired patterns
+	var image = Image.create(64, 64, false, Image.FORMAT_RGBA8)
+
+	# Fill with transparent background
+	image.fill(Color(0, 0, 0, 0))
+
+	# Draw a golden circle (simplified)
+	var center = Vector2(32, 32)
+	var radius = 28
+
+	for x in range(64):
+		for y in range(64):
+			var distance = Vector2(x, y).distance_to(center)
+			if distance <= radius:
+				# Create a golden gradient effect
+				var alpha = 1.0 - (distance / radius) * 0.3
+				var gold_color = Color("#D4A017")  # Moroccan gold
+				if distance <= radius - 4:
+					# Inner circle - brighter gold
+					gold_color = Color("#F4C430")
+				elif distance >= radius - 2:
+					# Border - darker gold
+					gold_color = Color("#B8860B")
+
+				gold_color.a = alpha
+				image.set_pixel(x, y, gold_color)
+
+	# Create texture from image
+	var texture = ImageTexture.new()
+	texture.set_image(image)
+
+	# Store the texture in a temporary variable for reuse
+	if not has_meta("storyteller_token_texture"):
+		set_meta("storyteller_token_texture", texture)
+
+	return "storyteller_token_generated"  # Special identifier
+
+func get_collectible_texture(item_name: String) -> Texture2D:
+	# Get the actual texture for collectibles
+	var image_path = get_collectible_image_path(item_name)
+
+	if image_path == "storyteller_token_generated":
+		# Return the generated texture
+		if has_meta("storyteller_token_texture"):
+			return get_meta("storyteller_token_texture")
+		else:
+			# Fallback to creating it again
+			create_storyteller_token_texture()
+			return get_meta("storyteller_token_texture")
+	elif ResourceLoader.exists(image_path):
+		return load(image_path)
+	else:
+		# Create a simple fallback texture
+		var fallback_texture = ImageTexture.new()
+		var image = Image.create(64, 64, false, Image.FORMAT_RGB8)
+		image.fill(Color("#D4A017"))  # Gold color as fallback
+		fallback_texture.set_image(image)
+		return fallback_texture
 
 func _on_time_capsule_panel_close_pressed():
 	print("Time Capsule panel close button pressed")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	hide_time_capsule_panel()
 
 # Trade Stall Panel handlers
@@ -341,10 +518,20 @@ func hide_trade_stall_panel():
 
 func _on_trade_stall_panel_close_pressed():
 	print("Trade Stall panel close button pressed")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	hide_trade_stall_panel()
 
 func _on_trade_stall_quest_start_pressed():
 	print("Trade Stall quest start button pressed")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	hide_trade_stall_panel()
 	await get_tree().create_timer(0.3).timeout  # Wait for panel to close
 	start_quest("traders_riddle", "Trade Stall")
@@ -376,10 +563,20 @@ func hide_oasis_path_panel():
 
 func _on_oasis_path_panel_close_pressed():
 	print("Oasis Path panel close button pressed")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	hide_oasis_path_panel()
 
 func _on_oasis_path_quest_start_pressed():
 	print("Oasis Path quest start button pressed")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	hide_oasis_path_panel()
 	await get_tree().create_timer(0.3).timeout  # Wait for panel to close
 	start_quest("camel_track", "Oasis Path")
@@ -411,10 +608,20 @@ func hide_caravan_camp_panel():
 
 func _on_caravan_camp_panel_close_pressed():
 	print("Caravan Camp panel close button pressed")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	hide_caravan_camp_panel()
 
 func _on_caravan_camp_quest_start_pressed():
 	print("Caravan Camp quest start button pressed")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	hide_caravan_camp_panel()
 	await get_tree().create_timer(0.3).timeout  # Wait for panel to close
 	start_quest("berber_tale", "Caravan Camp")

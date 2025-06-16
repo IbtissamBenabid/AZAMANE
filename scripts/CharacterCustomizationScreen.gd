@@ -12,6 +12,11 @@ var selected_character = "Male"  # Default to male
 
 func _ready():
 	print("Character Selection Screen loaded")
+
+	# Start rehab background music
+	if AudioManager:
+		AudioManager.fade_in_background_music("rehab", 2.0)
+
 	update_character_preview()
 
 func update_character_preview():
@@ -53,6 +58,11 @@ func animate_character_preview():
 # Character button handlers - direct selection, no toggle
 func _on_male_button_pressed():
 	print("Male character selected")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	selected_character = "Male"
 	update_character_preview()
 
@@ -61,6 +71,11 @@ func _on_male_button_pressed():
 
 func _on_female_button_pressed():
 	print("Female character selected")
+
+	# Play click sound
+	if AudioManager:
+		AudioManager.play_click_sound()
+
 	selected_character = "Female"
 	update_character_preview()
 
@@ -75,7 +90,9 @@ func proceed_to_next_screen():
 
 	await tween.finished
 
+	# Fade out background music before scene change
+	if AudioManager:
+		AudioManager.fade_out_background_music(1.0)
+
 	# Transition to Rules Screen
 	GameManager.change_scene("RulesScreen")
-
-
