@@ -14,8 +14,11 @@ const COLORS = {
 
 # Button hover effect
 func add_button_hover_effect(button: Button):
-	button.mouse_entered.connect(func(): _on_button_hover(button))
-	button.mouse_exited.connect(func(): _on_button_unhover(button))
+	if button != null:
+		button.mouse_entered.connect(func(): _on_button_hover(button))
+		button.mouse_exited.connect(func(): _on_button_unhover(button))
+	else:
+		print("Warning: Attempted to add hover effect to null button")
 
 func _on_button_hover(button: Button):
 	var tween = button.create_tween()

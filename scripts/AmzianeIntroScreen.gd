@@ -3,31 +3,32 @@ extends Control
 # Amziane Introduction Screen for Azamane - Moroccan Time Capsule
 # Displays character card with Amziane's details
 
-@onready var character_sprite = $UI/MainContainer/CharacterCard/VBoxContainer/CharacterSprite
-@onready var next_button = $UI/MainContainer/InfoPanel/VBoxContainer/NextButton
+@onready var character_sprite = $UI/MainContainer/CharacterPreview/CharacterSprite
+@onready var next_button = $UI/MainContainer/InfoPanel/NextButton
 
 func _ready():
 	print("Amziane Introduction Screen loaded")
 	load_character_sprite()
 
 func load_character_sprite():
-	# Load the Amziane sprite based on selected gender
-	var sprite_path = GameManager.get_amziane_sprite_path()
-	var texture = load(sprite_path) if ResourceLoader.exists(sprite_path) else null
+	# Always load the Amziane PNG sprite for this introduction screen
+	var sprite_path = "res://assets/sprites/amziane_128x128.png"
 
-	if texture:
+	if ResourceLoader.exists(sprite_path):
+		var texture = load(sprite_path)
 		character_sprite.texture = texture
 		print("Loaded Amziane sprite: ", sprite_path)
 
 		# Add entrance animation
 		animate_character_entrance()
 	else:
-		print("Could not load sprite: ", sprite_path)
-		# Use default Amziane sprite as fallback
-		var default_path = "res://assets/sprites/amziane_32x32.svg"
-		if ResourceLoader.exists(default_path):
-			character_sprite.texture = load(default_path)
-			print("Using default Amziane sprite: ", default_path)
+		print("ERROR: Could not find Amziane sprite at: ", sprite_path)
+		# Try alternative path just in case
+		var alt_path = GameManager.get_amziane_sprite_path()
+		if ResourceLoader.exists(alt_path):
+			character_sprite.texture = load(alt_path)
+			print("Using alternative Amziane sprite: ", alt_path)
+			animate_character_entrance()
 
 func animate_character_entrance():
 	# Start with character scaled down and fade in

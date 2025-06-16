@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwtyx75pp76k2"
-path="res://.godot/imported/character_creation_320x180.svg-b0ea1e314e955b890e2ecdc992b49fe1.ctex"
+uid="uid://dpmhvr81v1g34"
+path="res://.godot/imported/solo_blue_player_standing_128x128.png-6a0bf064f4d5b51377a27f0fb036fa43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/character_creation_320x180.svg"
-dest_files=["res://.godot/imported/character_creation_320x180.svg-b0ea1e314e955b890e2ecdc992b49fe1.ctex"]
+source_file="res://assets/sprites/solo_blue_player_standing_128x128.png"
+dest_files=["res://.godot/imported/solo_blue_player_standing_128x128.png-6a0bf064f4d5b51377a27f0fb036fa43.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

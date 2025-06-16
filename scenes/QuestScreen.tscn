@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dj7kgwgnsoqr"]
 
 [ext_resource type="Script" uid="uid://b2j2wqhx0cii5" path="res://scripts/QuestScreen.gd" id="1_6k8vr"]
-[ext_resource type="Texture2D" uid="uid://cb2mvpllcu1e2" path="res://assets/sprites/dialog_panel.svg" id="2_7k8vr"]
+[ext_resource type="Texture2D" uid="uid://bvxmtodatorgr" path="res://assets/sprites/dialog_panel_256x128.png" id="2_7k8vr"]
 
 [node name="QuestScreen" type="Control"]
 layout_mode = 3
@@ -49,32 +49,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 40.0
-offset_right = -40.0
-offset_bottom = -40.0
+offset_left = 47.0
+offset_top = 117.0
+offset_right = -33.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="QuestTitle" type="Label" parent="UI/QuestPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 28
-text = "Quest Title"
-horizontal_alignment = 1
 
 [node name="Spacer1" type="Control" parent="UI/QuestPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-
-[node name="QuestDescription" type="RichTextLabel" parent="UI/QuestPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/normal_font_size = 16
-bbcode_enabled = true
-text = "Quest description will appear here..."
-fit_content = true
 
 [node name="Spacer2" type="Control" parent="UI/QuestPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -98,19 +82,27 @@ layout_mode = 2
 [node name="OptionA" type="Button" parent="UI/QuestPanel/VBoxContainer/OptionsContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 18
 text = "Option A"
+
+[node name="OptionSpacer1" type="Control" parent="UI/QuestPanel/VBoxContainer/OptionsContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
 [node name="OptionB" type="Button" parent="UI/QuestPanel/VBoxContainer/OptionsContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 18
 text = "Option B"
+
+[node name="OptionSpacer2" type="Control" parent="UI/QuestPanel/VBoxContainer/OptionsContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
 [node name="OptionC" type="Button" parent="UI/QuestPanel/VBoxContainer/OptionsContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 18
 text = "Option C"
 
 [node name="Spacer4" type="Control" parent="UI/QuestPanel/VBoxContainer"]
@@ -124,7 +116,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 18
 text = "Back to Map"
 
 [node name="Spacer" type="Control" parent="UI/QuestPanel/VBoxContainer/ButtonContainer"]
@@ -134,10 +126,34 @@ layout_mode = 2
 [node name="SubmitButton" type="Button" parent="UI/QuestPanel/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.208, 0.369, 0.231, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 18
 disabled = true
 text = "Submit Answer"
+
+[node name="QuestDescription" type="RichTextLabel" parent="UI/QuestPanel"]
+layout_mode = 2
+offset_left = 38.0
+offset_top = 106.0
+offset_right = 660.0
+offset_bottom = 154.0
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Quest description will appear here..."
+fit_content = true
+
+[node name="QuestTitle" type="Label" parent="UI/QuestPanel"]
+layout_mode = 2
+offset_left = -139.0
+offset_top = 44.0
+offset_right = 481.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 28
+text = "Quest Title"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="UI/QuestPanel/VBoxContainer/OptionsContainer/OptionA" to="." method="_on_option_a_pressed"]
 [connection signal="pressed" from="UI/QuestPanel/VBoxContainer/OptionsContainer/OptionB" to="." method="_on_option_b_pressed"]

@@ -54,19 +54,94 @@ func complete_quest(quest_name: String):
 		game_state.quests_completed.append(quest_name)
 		print("Quest completed: ", quest_name)
 
+func get_quest_riddle(quest_id: String) -> Dictionary:
+	match quest_id:
+		"traders_riddle":
+			return get_trade_stall_riddles()
+		"camel_track":
+			return get_oasis_path_riddles()
+		"berber_tale":
+			return get_caravan_camp_riddles()
+		_:
+			return get_random_riddle()
+
+func get_trade_stall_riddles() -> Dictionary:
+	var riddles = [
+		{
+			"question": "I am precious yet common, white as bone, traded for gold across the Sahara. What am I?",
+			"options": ["Salt", "Sand", "Ivory"],
+			"correct": 0,
+			"lore": "Salt was more valuable than gold in ancient Berber trade! It preserved food and was essential for life in the desert."
+		},
+		{
+			"question": "I flow without water, guide without feet, and whisper secrets of distant markets. What am I?",
+			"options": ["River", "Wind", "Caravan"],
+			"correct": 1,
+			"lore": "Desert winds carried news between trading posts, helping merchants know which routes were safe and profitable."
+		},
+		{
+			"question": "In the souk, I am weighed but never eaten, valued but never worn, traded but never owned. What am I?",
+			"options": ["Spices", "Trust", "Gold"],
+			"correct": 1,
+			"lore": "Trust was the most valuable currency in Berber trade. A merchant's word was their bond across the vast desert."
+		}
+	]
+	return riddles[randi() % riddles.size()]
+
+func get_oasis_path_riddles() -> Dictionary:
+	var riddles = [
+		{
+			"question": "I leave marks in sand but make no sound, I point the way but have no voice. Follow my trail to find what's lost. What am I?",
+			"options": ["Footprints", "Stars", "Wind"],
+			"correct": 0,
+			"lore": "Berber trackers could read animal footprints like books, determining age, health, and direction from subtle signs in the sand."
+		},
+		{
+			"question": "I am green in the golden sea, life in the land of death, hope where there is none. Travelers seek me desperately. What am I?",
+			"options": ["Mirage", "Oasis", "Cactus"],
+			"correct": 1,
+			"lore": "Oases were sacred places in Berber culture, often protected by ancient laws and shared peacefully between tribes."
+		},
+		{
+			"question": "I drink much but am never full, I carry heavy loads but never tire, my bells announce arrivals from afar. What am I?",
+			"options": ["Well", "Camel", "Donkey"],
+			"correct": 1,
+			"lore": "Camels can drink up to 40 gallons of water at once and survive weeks without drinking again - perfect for desert travel."
+		}
+	]
+	return riddles[randi() % riddles.size()]
+
+func get_caravan_camp_riddles() -> Dictionary:
+	var riddles = [
+		{
+			"question": "Complete this ancient Berber proverb: 'The one who tells stories rules the world, for they control...'",
+			"options": ["The past", "The future", "The hearts of people"],
+			"correct": 2,
+			"lore": "Berber storytellers (imdyazn) were highly respected, preserving history and wisdom through oral tradition across generations."
+		},
+		{
+			"question": "In Berber tales, what creature is said to guard the desert's greatest treasures and test the worthy?",
+			"options": ["Djinn", "Eagle", "Serpent"],
+			"correct": 0,
+			"lore": "Djinn in Berber folklore were complex beings - sometimes helpful, sometimes dangerous, always testing human character and wisdom."
+		},
+		{
+			"question": "According to Berber tradition, what must a storyteller always do before beginning an important tale?",
+			"options": ["Light incense", "Ask permission from the ancestors", "Share tea with listeners"],
+			"correct": 1,
+			"lore": "Berber storytellers honored their ancestors before sharing sacred stories, believing the spirits guided their words and memory."
+		}
+	]
+	return riddles[randi() % riddles.size()]
+
 func get_random_riddle():
+	# Fallback riddles for any unspecified quests
 	var riddles = [
 		{
 			"question": "I flow without water, guide without feet—what am I?",
 			"options": ["Wind", "Sand", "Gold"],
 			"correct": 0,
 			"lore": "Tamazight riddles shaped Berber trade wisdom!"
-		},
-		{
-			"question": "I am precious yet common, white as bone, traded for gold—what am I?",
-			"options": ["Salt", "Sand", "Cloth"],
-			"correct": 0,
-			"lore": "Salt was the foundation of Berber trade routes!"
 		},
 		{
 			"question": "I carry burdens across endless dunes, my bells sing of distant lands—what am I?",
@@ -143,25 +218,38 @@ func set_player_accessory(accessory: String, color: String = "gold"):
 
 func get_player_sprite_path() -> String:
 	# Return the appropriate sprite based on gender and clothing selection
-	var gender_prefix = "female_" if player_data.gender == "Female" else ""
-
+	# Use PNG sprites for better performance and consistency
 	if player_data.clothing == "tunic":
-		return "res://assets/sprites/player_" + gender_prefix + "tunic_blue_32x32.svg"
+		if player_data.gender == "Female":
+			return "res://assets/sprites/red_female_player_standing_128x128.png"
+		else:
+			return "res://assets/sprites/blue_player_standing_128x128.png"
 	elif player_data.clothing_color == "green":
-		return "res://assets/sprites/player_" + gender_prefix + "djellaba_green_32x32.svg"
+		if player_data.gender == "Female":
+			return "res://assets/sprites/red_female_player_standing_128x128.png"
+		else:
+			return "res://assets/sprites/green_player_standing_128x128.png"
 	else:
-		return "res://assets/sprites/player_" + gender_prefix + "base_32x32.svg"
+		# Default to blue player sprite
+		if player_data.gender == "Female":
+			return "res://assets/sprites/red_female_player_standing_128x128.png"
+		else:
+			return "res://assets/sprites/blue_player_standing_128x128.png"
 
 func get_amziane_sprite_path() -> String:
-	# Return Amziane sprite based on selected gender
+	# Return Amziane sprite - always use PNG for consistency
 	if player_data.gender == "Female":
-		return "res://assets/sprites/amziane_female_32x32.svg"
+		return "res://assets/sprites/red_female_player_standing_128x128.png"
 	else:
 		return "res://assets/sprites/amziane_128x128.png"
 
 # Quest system
 func start_quest(quest_id: String) -> Dictionary:
-	var riddle = get_random_riddle()
+	var riddle = get_quest_riddle(quest_id)
+
+	# Store the riddle for validation when answering
+	current_riddles[quest_id] = riddle
+
 	return {
 		"id": quest_id,
 		"question": riddle.question,
@@ -170,8 +258,12 @@ func start_quest(quest_id: String) -> Dictionary:
 		"lore": riddle.lore
 	}
 
+# Store current riddles for validation
+var current_riddles = {}
+
 func answer_quest(quest_id: String, answer_index: int) -> Dictionary:
-	var riddle = get_random_riddle()  # In a real implementation, store the current riddle
+	# Get the riddle that was presented for this quest
+	var riddle = current_riddles.get(quest_id, get_quest_riddle(quest_id))
 	var is_correct = (answer_index == riddle.correct)
 
 	var result = {
@@ -180,26 +272,49 @@ func answer_quest(quest_id: String, answer_index: int) -> Dictionary:
 	}
 
 	if is_correct:
-		add_culture_points(2)
+		# Award different points based on difficulty
+		var points = get_quest_difficulty_points(quest_id)
+		add_culture_points(points)
 		complete_quest(quest_id)
 
 		# Add appropriate collectible based on quest
-		var collectible_name = ""
-		var collectible_lore = ""
+		var collectible_data = get_quest_collectible(quest_id)
+		if collectible_data.name:
+			add_to_time_capsule(collectible_data.name, collectible_data.lore)
+			result["collectible"] = collectible_data.name
 
-		match quest_id:
-			"traders_riddle":
-				collectible_name = "Desert Veil"
-				collectible_lore = "A flowing fabric that protects against desert winds"
-			"camel_track":
-				collectible_name = "Salt Crystal"
-				collectible_lore = "A precious trade gem of the Sahara"
-			"berber_tale":
-				collectible_name = "Carved Staff"
-				collectible_lore = "A wooden staff with ancient Berber symbols"
-
-		if collectible_name:
-			add_to_time_capsule(collectible_name, collectible_lore)
-			result["collectible"] = collectible_name
+		# Clear the stored riddle
+		current_riddles.erase(quest_id)
 
 	return result
+
+func get_quest_difficulty_points(quest_id: String) -> int:
+	match quest_id:
+		"camel_track":  # Easy
+			return 1
+		"traders_riddle":  # Medium
+			return 2
+		"berber_tale":  # Hard
+			return 3
+		_:
+			return 2
+
+func get_quest_collectible(quest_id: String) -> Dictionary:
+	match quest_id:
+		"traders_riddle":
+			return {
+				"name": "Desert Veil",
+				"lore": "A flowing fabric that protects against desert winds and sandstorms, woven with traditional Berber patterns."
+			}
+		"camel_track":
+			return {
+				"name": "Water Gourd",
+				"lore": "A leather water container used by desert travelers, decorated with protective symbols and blessed by oasis spirits."
+			}
+		"berber_tale":
+			return {
+				"name": "Berber Amulet",
+				"lore": "A silver amulet inscribed with ancient Tifinagh script, said to carry the wisdom of storytellers through generations."
+			}
+		_:
+			return {"name": "", "lore": ""}

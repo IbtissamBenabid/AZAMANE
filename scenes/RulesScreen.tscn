@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://4u25ito7wh67"]
+[gd_scene load_steps=4 format=3 uid="uid://4u25ito7wh67"]
 
 [ext_resource type="Script" uid="uid://dna7mupgreu3f" path="res://scripts/RulesScreen.gd" id="1_3k8vr"]
 [ext_resource type="Texture2D" uid="uid://drl6bk3i6g3xi" path="res://assets/backgrounds/narrative_scroll_640x360.png" id="2_5jm8q"]
+[ext_resource type="Texture2D" uid="uid://u1obxkguj7eq" path="res://assets/sprites/long_button_256x128.png" id="3_button"]
 
 [node name="RulesScreen" type="Control"]
 layout_mode = 3
@@ -31,46 +32,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ContentPanel" type="Panel" parent="UI"]
-modulate = Color(1, 1, 1, 0.9)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -450.0
-offset_top = -300.0
-offset_right = 450.0
-offset_bottom = 300.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/ContentPanel"]
-layout_mode = 1
-anchors_preset = 15
+[node name="Title" type="Label" parent="UI"]
+layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = 30.0
-offset_right = -30.0
-offset_bottom = -30.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Title" type="Label" parent="UI/ContentPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+offset_left = 208.0
+offset_top = 121.0
+offset_right = -232.0
+offset_bottom = -554.0
+theme_override_colors/font_color = Color(0.146259, 0.221691, 0.438293, 1)
 theme_override_font_sizes/font_size = 32
 text = "Game Rules"
 horizontal_alignment = 1
 
-[node name="Spacer1" type="Control" parent="UI/ContentPanel/VBoxContainer"]
+[node name="Spacer1" type="Control" parent="UI"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+anchors_preset = 0
+offset_left = 220.0
+offset_top = 139.0
+offset_right = 1060.0
+offset_bottom = 159.0
 
-[node name="RulesText" type="RichTextLabel" parent="UI/ContentPanel/VBoxContainer"]
+[node name="RulesText" type="RichTextLabel" parent="UI"]
 layout_mode = 2
+offset_left = 338.0
+offset_top = 197.0
+offset_right = 964.0
+offset_bottom = 508.0
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/normal_font_size = 16
@@ -88,14 +77,39 @@ text = "[b]1. Role:[/b] You'll play as [color=#D4A017]Amziane[/color], a Berber 
 [center][color=#D4A017]Good luck on your journey through 7th-century Morocco![/color][/center]"
 fit_content = true
 
-[node name="Spacer2" type="Control" parent="UI/ContentPanel/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="UI"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+anchors_preset = 0
+offset_left = 220.0
+offset_top = 478.0
+offset_right = 1060.0
+offset_bottom = 498.0
 
-[node name="NextButton" type="Button" parent="UI/ContentPanel/VBoxContainer"]
+[node name="NextButton" type="TextureButton" parent="UI"]
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 20
-text = "Meet Amziane"
+offset_left = 505.0
+offset_top = 534.0
+offset_right = 1503.0
+offset_bottom = 662.0
+texture_normal = ExtResource("3_button")
 
-[connection signal="pressed" from="UI/ContentPanel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[node name="ButtonLabel" type="Label" parent="UI/NextButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.239
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -8.0
+offset_right = 36.478
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 24
+text = "Meet Amziane"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UI/NextButton" to="." method="_on_next_button_pressed"]

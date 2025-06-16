@@ -1,48 +1,33 @@
 extends Control
 
-# Character Customization Screen for Azamane - Moroccan Time Capsule
-# Allows player to customize gender and clothing with real-time preview
+# Character Selection Screen for Azamane - Moroccan Time Capsule
+# Simple choice between Female or Male character - no customization
 
-@onready var character_sprite = $UI/MainContainer/CharacterPreview/VBoxContainer/CharacterSprite
-@onready var male_button = $UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection/GenderButtons/MaleButton
-@onready var female_button = $UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection/GenderButtons/FemaleButton
-@onready var indigo_button = $UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons/IndigoDjellabaButton
-@onready var brown_button = $UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons/BrownRobeButton
-@onready var blue_button = $UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons/BlueTunicButton
-@onready var start_button = $UI/MainContainer/CustomizationPanel/VBoxContainer/StartButton
+@onready var character_sprite = $UI/MainContainer/CharacterPreview/CharacterSprite
+@onready var male_button = $UI/MainContainer/CustomizationPanel/MaleButton
+@onready var female_button = $UI/MainContainer/CustomizationPanel/FemaleButton
 
-# Button groups for exclusive selection
-var gender_group: ButtonGroup
-var clothing_group: ButtonGroup
+# Current selection
+var selected_character = "Male"  # Default to male
 
 func _ready():
-	print("Character Customization Screen loaded")
-	setup_button_groups()
+	print("Character Selection Screen loaded")
 	update_character_preview()
 
-func setup_button_groups():
-	# Create button groups for exclusive selection
-	gender_group = ButtonGroup.new()
-	male_button.button_group = gender_group
-	female_button.button_group = gender_group
-	
-	clothing_group = ButtonGroup.new()
-	indigo_button.button_group = clothing_group
-	brown_button.button_group = clothing_group
-	blue_button.button_group = clothing_group
-
 func update_character_preview():
-	# Get current selections
-	var gender = "Male" if male_button.button_pressed else "Female"
-	var clothing = get_selected_clothing()
-	var color = get_selected_color()
+	# Update GameManager with current selection
+	GameManager.set_player_gender(selected_character)
 
-	# Update GameManager
-	GameManager.set_player_gender(gender)
-	GameManager.set_player_clothing(clothing, color)
+	# Set appropriate clothing - no customization needed
+	GameManager.set_player_clothing("djellaba", "green")
 
-	# Load and display sprite
-	var sprite_path = GameManager.get_player_sprite_path()
+	# Load and display appropriate solo sprite
+	var sprite_path = ""
+	if selected_character == "Female":
+		sprite_path = "res://assets/sprites/solo_red_female_player_standing_128x128.png"
+	else:
+		sprite_path = "res://assets/sprites/solo_blue_player_standing_128x128.png"
+
 	var texture = load(sprite_path) if ResourceLoader.exists(sprite_path) else null
 
 	if texture:
@@ -65,57 +50,32 @@ func animate_character_preview():
 	tween.tween_property(character_sprite, "scale", Vector2(1.1, 1.1), 0.2)
 	tween.tween_property(character_sprite, "scale", Vector2(1.0, 1.0), 0.2)
 
-func get_selected_clothing() -> String:
-	if indigo_button.button_pressed:
-		return "djellaba"
-	elif brown_button.button_pressed:
-		return "djellaba"
-	elif blue_button.button_pressed:
-		return "tunic"
-	else:
-		return "djellaba"  # Default
-
-func get_selected_color() -> String:
-	if indigo_button.button_pressed:
-		return "blue"
-	elif brown_button.button_pressed:
-		return "green"
-	elif blue_button.button_pressed:
-		return "blue"
-	else:
-		return "blue"  # Default
-
-# Gender button handlers
+# Character button handlers - direct selection, no toggle
 func _on_male_button_pressed():
-	print("Male selected")
+	print("Male character selected")
+	selected_character = "Male"
 	update_character_preview()
+
+	# Proceed directly to next screen
+	proceed_to_next_screen()
 
 func _on_female_button_pressed():
-	print("Female selected")
+	print("Female character selected")
+	selected_character = "Female"
 	update_character_preview()
 
-# Clothing button handlers
-func _on_indigo_djellaba_button_pressed():
-	print("Indigo djellaba selected")
-	update_character_preview()
+	# Proceed directly to next screen
+	proceed_to_next_screen()
 
-func _on_brown_robe_button_pressed():
-	print("Brown robe selected")
-	update_character_preview()
-
-func _on_blue_tunic_button_pressed():
-	print("Blue tunic selected")
-	update_character_preview()
-
-func _on_start_button_pressed():
-	print("Start Adventure button pressed")
-	
+func proceed_to_next_screen():
 	# Add button press feedback
 	var tween = create_tween()
-	tween.tween_property(start_button, "scale", Vector2(0.95, 0.95), 0.1)
-	tween.tween_property(start_button, "scale", Vector2(1.0, 1.0), 0.1)
-	
+	tween.tween_property(character_sprite, "scale", Vector2(1.1, 1.1), 0.2)
+	tween.tween_property(character_sprite, "scale", Vector2(1.0, 1.0), 0.2)
+
 	await tween.finished
-	
+
 	# Transition to Rules Screen
 	GameManager.change_scene("RulesScreen")
+
+

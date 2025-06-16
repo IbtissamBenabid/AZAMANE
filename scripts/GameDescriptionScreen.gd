@@ -3,7 +3,8 @@ extends Control
 # Game Description Screen for Azamane - Moroccan Time Capsule
 # Displays game overview and introduction
 
-@onready var next_button = $UI/ContentPanel/VBoxContainer/NextButton
+@onready var next_button = $UI/NextButton
+@onready var button_label = $UI/NextButton/ButtonLabel
 
 func _ready():
 	print("Game Description Screen loaded")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxqvn8yxqkqxr"]
 
 [ext_resource type="Script" uid="uid://bq0r0rj7epgj6" path="res://scripts/WelcomeScreen.gd" id="1_0k8vr"]
-[ext_resource type="Texture2D" uid="uid://drpurv1wtpec1" path="res://assets/backgrounds/desert_outpost_welcome_640x360.png" id="2_myxqs"]
+[ext_resource type="Texture2D" uid="uid://dtgr22aa0dar2" path="res://assets/backgrounds/AZAMANE.png" id="2_azamane"]
 
 [node name="WelcomeScreen" type="Control"]
 layout_mode = 3
@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_myxqs")
+texture = ExtResource("2_azamane")
 expand_mode = 1
 stretch_mode = 5
 
@@ -28,6 +28,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 269.0
+offset_right = 2.0
+offset_bottom = 269.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -45,35 +49,25 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameTitle" type="Label" parent="UI/TitleContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
-theme_override_font_sizes/font_size = 48
-text = "Azamane"
-horizontal_alignment = 1
-
-[node name="Subtitle" type="Label" parent="UI/TitleContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
-theme_override_font_sizes/font_size = 24
-text = "Moroccan Time Capsule"
-horizontal_alignment = 1
-
 [node name="Spacer" type="Control" parent="UI/TitleContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="StartButton" type="Button" parent="UI/TitleContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_colors/font_hover_pressed_color = Color(0.172633, 0.183092, 0.133669, 1)
+theme_override_colors/font_color = Color(0.208438, 0.147954, 0.0066312, 1)
+theme_override_font_sizes/font_size = 28
 text = "Start Adventure"
+flat = true
 
 [node name="ParticleEffects" type="Control" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -266.0
+offset_bottom = -266.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

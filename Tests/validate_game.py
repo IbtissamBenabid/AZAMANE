@@ -27,8 +27,7 @@ def validate_azamane_game():
     core_files = [
         ("project.godot", "Godot project file"),
         ("icon.svg", "Game icon"),
-        ("README.md", "Documentation"),
-        ("test_game.gd", "Test script")
+        ("README.md", "Documentation")
     ]
     
     for filepath, desc in core_files:
@@ -68,57 +67,51 @@ def validate_azamane_game():
         if not check_file_exists(filepath, desc):
             all_good = False
     
-    # 4. Background Assets
+    # 4. Background Assets (PNG versions)
     print("\n4. Background Assets:")
     background_assets = [
-        ("assets/backgrounds/desert_outpost_welcome_320x180.svg", "Welcome Background"),
-        ("assets/backgrounds/desert_outpost_main_320x180.svg", "Map Background"),
-        ("assets/backgrounds/character_creation_320x180.svg", "Character Creation Background"),
-        ("assets/backgrounds/narrative_scroll_320x180.svg", "Narrative Background")
+        ("assets/backgrounds/desert_outpost_welcome_640x360.png", "Welcome Background"),
+        ("assets/backgrounds/desert_outpost_main_640x360.png", "Map Background"),
+        ("assets/backgrounds/character_creation_640x360.png", "Character Creation Background"),
+        ("assets/backgrounds/narrative_scroll_640x360.png", "Narrative Background")
     ]
-    
+
     for filepath, desc in background_assets:
         if not check_file_exists(filepath, desc):
             all_good = False
-    
-    # 5. Character Sprites
+
+    # 5. Character Sprites (PNG versions)
     print("\n5. Character Sprites:")
     sprite_assets = [
-        ("assets/sprites/amziane_32x32.svg", "Amziane Character (Male)"),
-        ("assets/sprites/amziane_female_32x32.svg", "Amziane Character (Female)"),
-        ("assets/sprites/player_base_32x32.svg", "Player Base Sprite (Male)"),
-        ("assets/sprites/player_djellaba_green_32x32.svg", "Green Djellaba Variant (Male)"),
-        ("assets/sprites/player_tunic_blue_32x32.svg", "Blue Tunic Variant (Male)"),
-        ("assets/sprites/player_female_base_32x32.svg", "Player Base Sprite (Female)"),
-        ("assets/sprites/player_female_djellaba_green_32x32.svg", "Green Djellaba Variant (Female)"),
-        ("assets/sprites/player_female_tunic_blue_32x32.svg", "Blue Tunic Variant (Female)")
+        ("assets/sprites/amziane_128x128.png", "Amziane Character"),
+        ("assets/sprites/blue_player_standing_128x128.png", "Blue Player Character"),
+        ("assets/sprites/green_player_standing_128x128.png", "Green Player Character"),
+        ("assets/sprites/red_female_player_standing_128x128.png", "Female Player Character")
     ]
-    
+
     for filepath, desc in sprite_assets:
         if not check_file_exists(filepath, desc):
             all_good = False
-    
-    # 6. Collectible Assets
+
+    # 6. Collectible Assets (PNG versions)
     print("\n6. Collectible Items:")
     collectible_assets = [
-        ("assets/sprites/salt_crystal_16x16.svg", "Salt Crystal"),
-        ("assets/sprites/desert_veil_16x16.svg", "Desert Veil"),
-        ("assets/sprites/berber_tale_16x16.svg", "Berber Tale")
+        ("assets/sprites/desert_veil_64x64.png", "Desert Veil")
     ]
-    
+
     for filepath, desc in collectible_assets:
         if not check_file_exists(filepath, desc):
             all_good = False
-    
-    # 7. UI Assets
+
+    # 7. UI Assets (PNG versions)
     print("\n7. UI Elements:")
     ui_assets = [
-        ("assets/sprites/dialog_panel.svg", "Dialog Panel"),
-        ("assets/sprites/hotspot_marker.svg", "Hotspot Marker"),
-        ("assets/sprites/ui_button_normal.svg", "Normal Button"),
-        ("assets/sprites/ui_button_pressed.svg", "Pressed Button")
+        ("assets/sprites/dialog_panel_256x128.png", "Dialog Panel"),
+        ("assets/sprites/hotspot_marker_64x64.png", "Hotspot Marker"),
+        ("assets/sprites/normal_button_256x128.png", "Normal Button"),
+        ("assets/sprites/long_button_256x128.png", "Long Button")
     ]
-    
+
     for filepath, desc in ui_assets:
         if not check_file_exists(filepath, desc):
             all_good = False

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://fl25ito7vg65"]
+[gd_scene load_steps=6 format=3 uid="uid://fl25ito7vg65"]
 
 [ext_resource type="Script" uid="uid://c6laubcbg8kcl" path="res://scripts/CharacterCustomizationScreen.gd" id="1_2k8vr"]
 [ext_resource type="Texture2D" uid="uid://bk1yqof0wr1el" path="res://assets/backgrounds/character_creation_640x360.png" id="2_8w3yu"]
+[ext_resource type="Texture2D" uid="uid://dtf113l7ymxau" path="res://assets/sprites/largel_panel_256x128.png" id="3_panel"]
+[ext_resource type="Texture2D" uid="uid://bxcjde1m1dejk" path="res://assets/sprites/long_button_orange_256x128.png" id="4_orange_button"]
+[ext_resource type="Texture2D" uid="uid://dpmhvr81v1g34" path="res://assets/sprites/solo_blue_player_standing_128x128.png" id="5_blue_male"]
 
 [node name="CharacterCustomizationScreen" type="Control"]
 layout_mode = 3
@@ -45,141 +48,156 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CharacterPreview" type="Panel" parent="UI/MainContainer"]
-modulate = Color(1, 1, 1, 0.9)
+[node name="CharacterPreview" type="NinePatchRect" parent="UI/MainContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+texture = ExtResource("3_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/CharacterPreview"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PreviewTitle" type="Label" parent="UI/MainContainer/CharacterPreview/VBoxContainer"]
+[node name="PreviewTitle" type="Label" parent="UI/MainContainer/CharacterPreview"]
 layout_mode = 2
+offset_left = 20.0
+offset_top = 51.0
+offset_right = 378.0
+offset_bottom = 85.0
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/font_size = 24
 text = "Character Preview"
 horizontal_alignment = 1
 
-[node name="CharacterSprite" type="TextureRect" parent="UI/MainContainer/CharacterPreview/VBoxContainer"]
-custom_minimum_size = Vector2(128, 128)
+[node name="CharacterSprite" type="TextureRect" parent="UI/MainContainer/CharacterPreview"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+offset_left = 99.0
+offset_top = 58.0
+offset_right = 299.0
+offset_bottom = 480.0
 size_flags_horizontal = 4
 size_flags_vertical = 3
+texture = ExtResource("5_blue_male")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CustomizationPanel" type="Panel" parent="UI/MainContainer"]
-modulate = Color(1, 1, 1, 0.9)
+[node name="CustomizationPanel" type="NinePatchRect" parent="UI/MainContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+texture = ExtResource("3_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/CustomizationPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Title" type="Label" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
+[node name="Title" type="Label" parent="UI/MainContainer/CustomizationPanel"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 28
-text = "Customize Amziane"
+offset_left = 19.0
+offset_top = 54.0
+offset_right = 374.0
+offset_bottom = 99.0
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 24
+text = "Choose Your Character"
 horizontal_alignment = 1
 
-[node name="Spacer1" type="Control" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
+[node name="Spacer1" type="Control" parent="UI/MainContainer/CustomizationPanel"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+anchors_preset = 0
+offset_left = 15.0
+offset_top = 69.0
+offset_right = 383.0
+offset_bottom = 99.0
+
+[node name="CharacterButtons" type="VBoxContainer" parent="UI/MainContainer/CustomizationPanel"]
+layout_mode = 2
+offset_left = 15.0
+offset_top = 103.0
+offset_right = 383.0
+offset_bottom = 103.0
+
+[node name="FemaleButton" type="TextureButton" parent="UI/MainContainer/CustomizationPanel"]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+offset_left = 68.0
+offset_top = 172.0
+offset_right = 407.0
+offset_bottom = 300.0
+texture_normal = ExtResource("4_orange_button")
+
+[node name="FemaleLabel" type="Label" parent="UI/MainContainer/CustomizationPanel/FemaleButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.687
+anchor_bottom = 0.5
+offset_left = 21.135
+offset_top = -10.0
+offset_right = 4.10699
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.847059, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Female Character"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonSpacer" type="Control" parent="UI/MainContainer/CustomizationPanel"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+anchors_preset = 0
+offset_left = 15.0
+offset_top = 239.0
+offset_right = 383.0
+offset_bottom = 259.0
 
-[node name="GenderSection" type="VBoxContainer" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
+[node name="MaleButton" type="TextureButton" parent="UI/MainContainer/CustomizationPanel"]
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
+offset_left = 70.0
+offset_top = 276.0
+offset_right = 410.0
+offset_bottom = 404.0
+texture_normal = ExtResource("4_orange_button")
 
-[node name="GenderLabel" type="Label" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 20
-text = "Gender:"
+[node name="MaleLabel" type="Label" parent="UI/MainContainer/CustomizationPanel/MaleButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.679
+anchor_bottom = 0.5
+offset_left = 35.0
+offset_top = -27.0
+offset_right = -7.87201
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.255642, 0.730473, 0.841014, 1)
+theme_override_font_sizes/font_size = 24
+text = "Male Character"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="GenderButtons" type="HBoxContainer" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection"]
+[node name="Spacer3" type="Control" parent="UI/MainContainer/CustomizationPanel"]
 layout_mode = 2
-
-[node name="MaleButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection/GenderButtons"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-toggle_mode = true
-button_pressed = true
-text = "Male"
-
-[node name="FemaleButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection/GenderButtons"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-toggle_mode = true
-text = "Female"
-
-[node name="Spacer2" type="Control" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
-[node name="ClothingSection" type="VBoxContainer" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
-layout_mode = 2
-
-[node name="ClothingLabel" type="Label" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 20
-text = "Clothing:"
-
-[node name="ClothingButtons" type="VBoxContainer" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection"]
-layout_mode = 2
-
-[node name="IndigoDjellabaButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-toggle_mode = true
-button_pressed = true
-text = "Indigo djellaba with gold trim"
-
-[node name="BrownRobeButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-toggle_mode = true
-text = "Brown robe with green accents"
-
-[node name="BlueTunicButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-toggle_mode = true
-text = "Blue tunic with beige details"
-
-[node name="Spacer3" type="Control" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
-layout_mode = 2
+anchors_preset = 0
+offset_left = 15.0
+offset_top = 395.0
+offset_right = 383.0
+offset_bottom = 450.0
 size_flags_vertical = 3
 
-[node name="StartButton" type="Button" parent="UI/MainContainer/CustomizationPanel/VBoxContainer"]
+[node name="InstructionLabel" type="Label" parent="UI/MainContainer/CustomizationPanel"]
 layout_mode = 2
+offset_left = 17.0
+offset_top = 443.0
+offset_right = 385.0
+offset_bottom = 469.0
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 24
-text = "Start Adventure"
+theme_override_font_sizes/font_size = 18
+text = "Click on a character to select and continue"
+horizontal_alignment = 1
 
-[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection/GenderButtons/MaleButton" to="." method="_on_male_button_pressed"]
-[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/GenderSection/GenderButtons/FemaleButton" to="." method="_on_female_button_pressed"]
-[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons/IndigoDjellabaButton" to="." method="_on_indigo_djellaba_button_pressed"]
-[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons/BrownRobeButton" to="." method="_on_brown_robe_button_pressed"]
-[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/ClothingSection/ClothingButtons/BlueTunicButton" to="." method="_on_blue_tunic_button_pressed"]
-[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/FemaleButton" to="." method="_on_female_button_pressed"]
+[connection signal="pressed" from="UI/MainContainer/CustomizationPanel/MaleButton" to="." method="_on_male_button_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8yxqkqxr2bxv"]
+[gd_scene load_steps=4 format=3 uid="uid://c8yxqkqxr2bxv"]
 
 [ext_resource type="Script" uid="uid://cuf73ausnckhp" path="res://scripts/GameDescriptionScreen.gd" id="1_1k8vr"]
 [ext_resource type="Texture2D" uid="uid://drl6bk3i6g3xi" path="res://assets/backgrounds/narrative_scroll_640x360.png" id="2_3n2ne"]
+[ext_resource type="Texture2D" uid="uid://u1obxkguj7eq" path="res://assets/sprites/long_button_256x128.png" id="3_button"]
 
 [node name="GameDescriptionScreen" type="Control"]
 layout_mode = 3
@@ -31,67 +32,80 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ContentPanel" type="Panel" parent="UI"]
-modulate = Color(1, 1, 1, 0.9)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -250.0
-offset_right = 400.0
-offset_bottom = 250.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/ContentPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Title" type="Label" parent="UI/ContentPanel/VBoxContainer"]
+[node name="Title" type="Label" parent="UI"]
 layout_mode = 2
+offset_left = 250.0
+offset_top = 108.0
+offset_right = 1010.0
+offset_bottom = 153.0
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/font_size = 32
 text = "Welcome to Azamane!"
 horizontal_alignment = 1
 
-[node name="Spacer1" type="Control" parent="UI/ContentPanel/VBoxContainer"]
+[node name="Spacer1" type="Control" parent="UI"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+anchors_preset = 0
+offset_left = 165.0
+offset_top = 263.0
+offset_right = 925.0
+offset_bottom = 283.0
 
-[node name="DescriptionText" type="RichTextLabel" parent="UI/ContentPanel/VBoxContainer"]
+[node name="DescriptionText" type="RichTextLabel" parent="UI"]
 layout_mode = 2
+offset_left = 329.0
+offset_top = 210.0
+offset_right = 933.0
+offset_bottom = 492.0
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
-text = "[center]Welcome to [color=#D4A017]Azamane - Moroccan Time Capsule![/color]
+text = "Welcome to [color=#D4A017]Azamane - Moroccan Time Capsule![/color]
 
-Travel through Morocco's vibrant 7th-century desert, embody a role, and explore its rich multicultural heritage—Amazigh, Arab, and more. 
+Travel through Morocco's vibrant 7th-century desert, embody a role, and explore its rich multicultural heritage—Amazigh, Arab, and more.
 
-Solve riddles, share tales, and face fantastical djinn in quests to shape Morocco's story. 
+Solve riddles, share tales, and face fantastical djinn in quests to shape Morocco's story.
 
-Earn [color=#D4A017]Culture Points[/color] and build [color=#355E3B]trust[/color] to unlock lore![/center]"
+Earn [color=#D4A017]Culture Points[/color] and build [color=#355E3B]trust[/color] to unlock lore!"
 fit_content = true
 
-[node name="Spacer2" type="Control" parent="UI/ContentPanel/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="UI"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+anchors_preset = 0
+offset_left = 165.0
+offset_top = 522.0
+offset_right = 925.0
+offset_bottom = 542.0
 
-[node name="NextButton" type="Button" parent="UI/ContentPanel/VBoxContainer"]
+[node name="NextButton" type="TextureButton" parent="UI"]
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
+offset_left = 492.0
+offset_top = 528.0
+offset_right = 748.0
+offset_bottom = 656.0
+texture_normal = ExtResource("3_button")
+
+[node name="ButtonLabel" type="Label" parent="UI/NextButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.728
+anchor_top = 0.5
+anchor_right = -0.728
+anchor_bottom = 0.5
+offset_left = 55.368
+offset_top = -58.0
+offset_right = 588.368
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/font_size = 20
 text = "Next"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="pressed" from="UI/ContentPanel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="UI/NextButton" to="." method="_on_next_button_pressed"]

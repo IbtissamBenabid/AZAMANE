@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5v25ito7xi78"]
+[gd_scene load_steps=6 format=3 uid="uid://b5v25ito7xi78"]
 
 [ext_resource type="Script" uid="uid://dls0kwyngjiru" path="res://scripts/AmzianeIntroScreen.gd" id="1_4k8vr"]
 [ext_resource type="Texture2D" uid="uid://bk1yqof0wr1el" path="res://assets/backgrounds/character_creation_640x360.png" id="2_upih2"]
+[ext_resource type="Texture2D" uid="uid://dtf113l7ymxau" path="res://assets/sprites/largel_panel_256x128.png" id="3_panel"]
+[ext_resource type="Texture2D" uid="uid://u1obxkguj7eq" path="res://assets/sprites/long_button_256x128.png" id="4_button"]
+[ext_resource type="Texture2D" uid="uid://cru7w1gjekam5" path="res://assets/sprites/amziane_128x128.png" id="5_amziane"]
 
 [node name="AmzianeIntroScreen" type="Control"]
 layout_mode = 3
@@ -38,90 +41,48 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -450.0
+offset_left = -400.0
 offset_top = -250.0
-offset_right = 450.0
+offset_right = 400.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CharacterCard" type="Panel" parent="UI/MainContainer"]
-modulate = Color(1, 1, 1, 0.9)
+[node name="InfoPanel" type="NinePatchRect" parent="UI/MainContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+texture = ExtResource("3_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/CharacterCard"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CharacterTitle" type="Label" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
+[node name="InfoTitle" type="Label" parent="UI/MainContainer/InfoPanel"]
 layout_mode = 2
+offset_left = 19.0
+offset_top = 54.0
+offset_right = 374.0
+offset_bottom = 99.0
 theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
-theme_override_font_sizes/font_size = 28
-text = "Meet Your Character"
-horizontal_alignment = 1
-
-[node name="Spacer1" type="Control" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
-[node name="CharacterSprite" type="TextureRect" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-size_flags_horizontal = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Spacer2" type="Control" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
-[node name="CharacterName" type="Label" parent="UI/MainContainer/CharacterCard/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
-theme_override_font_sizes/font_size = 32
-text = "Amziane"
-horizontal_alignment = 1
-
-[node name="InfoPanel" type="Panel" parent="UI/MainContainer"]
-modulate = Color(1, 1, 1, 0.9)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/InfoPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="InfoTitle" type="Label" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/font_size = 24
-text = "Character Details"
+text = "Meet Amziane"
 horizontal_alignment = 1
 
-[node name="Spacer1" type="Control" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
+[node name="Spacer1" type="Control" parent="UI/MainContainer/InfoPanel"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+anchors_preset = 0
+offset_left = 15.0
+offset_top = 99.0
+offset_right = 383.0
+offset_bottom = 129.0
 
-[node name="CharacterInfo" type="RichTextLabel" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
+[node name="CharacterInfo" type="RichTextLabel" parent="UI/MainContainer/InfoPanel"]
 layout_mode = 2
-size_flags_vertical = 3
+offset_left = 14.0
+offset_top = 98.0
+offset_right = 382.0
+offset_bottom = 397.0
 theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
@@ -136,14 +97,75 @@ text = "[b]Name:[/b] [color=#D4A017]Amziane[/color]
 [center][color=#355E3B]Ready to begin your adventure?[/color][/center]"
 fit_content = true
 
-[node name="Spacer2" type="Control" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
+[node name="NextButton" type="TextureButton" parent="UI/MainContainer/InfoPanel"]
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
+offset_left = 68.0
+offset_top = 400.0
+offset_right = 324.0
+offset_bottom = 528.0
+texture_normal = ExtResource("4_button")
 
-[node name="NextButton" type="Button" parent="UI/MainContainer/InfoPanel/VBoxContainer"]
-layout_mode = 2
+[node name="ButtonLabel" type="Label" parent="UI/MainContainer/InfoPanel/NextButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/font_size = 20
 text = "Enter the Desert"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="pressed" from="UI/MainContainer/InfoPanel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[node name="CharacterPreview" type="NinePatchRect" parent="UI/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="PreviewTitle" type="Label" parent="UI/MainContainer/CharacterPreview"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 51.0
+offset_right = 378.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/font_size = 24
+text = "Your Character"
+horizontal_alignment = 1
+
+[node name="CharacterSprite" type="TextureRect" parent="UI/MainContainer/CharacterPreview"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+offset_left = 22.0
+offset_top = 62.0
+offset_right = 356.0
+offset_bottom = 446.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("5_amziane")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CharacterName" type="Label" parent="UI/MainContainer/CharacterPreview"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 430.0
+offset_right = 378.0
+offset_bottom = 470.0
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 28
+text = "Amziane"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="UI/MainContainer/InfoPanel/NextButton" to="." method="_on_next_button_pressed"]

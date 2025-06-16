@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6w25ito7yj8i"]
+[gd_scene load_steps=5 format=3 uid="uid://c6w25ito7yj8i"]
 
 [ext_resource type="Script" uid="uid://50gcjf4q7avc" path="res://scripts/MapScreen.gd" id="1_5k8vr"]
 [ext_resource type="Texture2D" uid="uid://drgneoja5rphk" path="res://assets/backgrounds/desert_outpost_main_640x360.png" id="2_hyscd"]
+[ext_resource type="Texture2D" uid="uid://u1obxkguj7eq" path="res://assets/sprites/long_button_256x128.png" id="3_button"]
+[ext_resource type="Texture2D" uid="uid://dtf113l7ymxau" path="res://assets/sprites/largel_panel_256x128.png" id="4_panel"]
 
 [node name="MapScreen" type="Control"]
 layout_mode = 3
@@ -31,23 +33,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopPanel" type="Panel" parent="UI"]
-modulate = Color(1, 1, 1, 0.9)
+[node name="TopPanel" type="NinePatchRect" parent="UI"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 80.0
+offset_bottom = 100.0
 grow_horizontal = 2
+texture = ExtResource("4_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/TopPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 10.0
-offset_right = -20.0
-offset_bottom = -10.0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = -40.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -105,71 +111,126 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TradeStallButton" type="Button" parent="UI/QuestHotspots"]
+[node name="TradeStallButton" type="TextureButton" parent="UI/QuestHotspots"]
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 200.0
-offset_top = -25.0
-offset_right = 350.0
-offset_bottom = 25.0
+offset_left = 150.0
+offset_top = -64.0
+offset_right = 406.0
+offset_bottom = 64.0
+grow_vertical = 2
+texture_normal = ExtResource("3_button")
+
+[node name="ButtonLabel" type="Label" parent="UI/QuestHotspots/TradeStallButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.165, 0.247, 0.482, 1)
 theme_override_font_sizes/font_size = 16
 text = "🏪 Trade Stall"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="OasisPathButton" type="Button" parent="UI/QuestHotspots"]
+[node name="OasisPathButton" type="TextureButton" parent="UI/QuestHotspots"]
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -25.0
+offset_left = -306.0
+offset_top = -64.0
 offset_right = -50.0
-offset_bottom = 25.0
+offset_bottom = 64.0
 grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("3_button")
+
+[node name="ButtonLabel" type="Label" parent="UI/QuestHotspots/OasisPathButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.208, 0.369, 0.231, 1)
 theme_override_font_sizes/font_size = 16
 text = "🌴 Oasis Path"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="CaravanCampButton" type="Button" parent="UI/QuestHotspots"]
+[node name="CaravanCampButton" type="TextureButton" parent="UI/QuestHotspots"]
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 100.0
-offset_top = -150.0
-offset_right = 250.0
-offset_bottom = -100.0
+offset_left = 50.0
+offset_top = -178.0
+offset_right = 306.0
+offset_bottom = -50.0
 grow_vertical = 0
+texture_normal = ExtResource("3_button")
+
+[node name="ButtonLabel" type="Label" parent="UI/QuestHotspots/CaravanCampButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
 theme_override_font_sizes/font_size = 16
 text = "🏕️ Caravan Camp"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="BottomPanel" type="Panel" parent="UI"]
-modulate = Color(1, 1, 1, 0.9)
+[node name="BottomPanel" type="NinePatchRect" parent="UI"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -100.0
+offset_top = -120.0
 grow_horizontal = 2
 grow_vertical = 0
+texture = ExtResource("4_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/BottomPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 10.0
-offset_right = -20.0
-offset_bottom = -10.0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = -40.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -180,13 +241,482 @@ theme_override_font_sizes/font_size = 14
 text = "Click on locations to start quests and earn Culture Points!"
 horizontal_alignment = 1
 
-[node name="TimeCapsuleButton" type="Button" parent="UI/BottomPanel/VBoxContainer"]
+[node name="TimeCapsuleButton" type="TextureButton" parent="UI/BottomPanel/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_button")
+
+[node name="ButtonLabel" type="Label" parent="UI/BottomPanel/VBoxContainer/TimeCapsuleButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
 theme_override_font_sizes/font_size = 16
 text = "📦 View Time Capsule"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TradeStallPanel" type="NinePatchRect" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="PanelContent" type="VBoxContainer" parent="UI/TradeStallPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="UI/TradeStallPanel/PanelContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 24
+text = "Trade Stall"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/TradeStallPanel/PanelContent"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Description" type="RichTextLabel" parent="UI/TradeStallPanel/PanelContent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]Welcome to the bustling [color=#D4A017]Trade Stall[/color]![/center]
+
+Here, merchants from across the Sahara gather to exchange goods, stories, and riddles. Test your wit with traditional Tamazight puzzles and earn the trust of fellow traders.
+
+[b]Quest Type:[/b] Riddle Challenge
+[b]Reward:[/b] Culture Points & Desert Veil
+[b]Difficulty:[/b] Medium
+
+[center][color=#355E3B]Ready to prove your trading wisdom?[/color][/center]"
+fit_content = true
+
+[node name="Spacer2" type="Control" parent="UI/TradeStallPanel/PanelContent"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="UI/TradeStallPanel/PanelContent"]
+layout_mode = 2
+
+[node name="CloseButton" type="TextureButton" parent="UI/TradeStallPanel/PanelContent/ButtonContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_button")
+
+[node name="CloseLabel" type="Label" parent="UI/TradeStallPanel/PanelContent/ButtonContainer/CloseButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
+theme_override_font_sizes/font_size = 16
+text = "Close"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="UI/TradeStallPanel/PanelContent/ButtonContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="StartQuestButton" type="TextureButton" parent="UI/TradeStallPanel/PanelContent/ButtonContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_button")
+
+[node name="StartLabel" type="Label" parent="UI/TradeStallPanel/PanelContent/ButtonContainer/StartQuestButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 16
+text = "Start Quest"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OasisPathPanel" type="NinePatchRect" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="PanelContent" type="VBoxContainer" parent="UI/OasisPathPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="UI/OasisPathPanel/PanelContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 24
+text = "Oasis Path"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/OasisPathPanel/PanelContent"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Description" type="RichTextLabel" parent="UI/OasisPathPanel/PanelContent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]Follow the ancient [color=#355E3B]Oasis Path[/color]![/center]
+
+Track the mysterious camel footprints that lead through shifting sands to hidden water sources. Use your knowledge of desert navigation and Berber tracking skills to uncover the secrets of the nomadic routes.
+
+[b]Quest Type:[/b] Tracking Challenge
+[b]Reward:[/b] Culture Points & Water Gourd
+[b]Difficulty:[/b] Easy
+
+[center][color=#355E3B]Ready to follow the ancient trails?[/color][/center]"
+fit_content = true
+
+[node name="Spacer2" type="Control" parent="UI/OasisPathPanel/PanelContent"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="UI/OasisPathPanel/PanelContent"]
+layout_mode = 2
+
+[node name="CloseButton" type="TextureButton" parent="UI/OasisPathPanel/PanelContent/ButtonContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_button")
+
+[node name="CloseLabel" type="Label" parent="UI/OasisPathPanel/PanelContent/ButtonContainer/CloseButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
+theme_override_font_sizes/font_size = 16
+text = "Close"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="UI/OasisPathPanel/PanelContent/ButtonContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="StartQuestButton" type="TextureButton" parent="UI/OasisPathPanel/PanelContent/ButtonContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_button")
+
+[node name="StartLabel" type="Label" parent="UI/OasisPathPanel/PanelContent/ButtonContainer/StartQuestButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 16
+text = "Start Quest"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CaravanCampPanel" type="NinePatchRect" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="PanelContent" type="VBoxContainer" parent="UI/CaravanCampPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="UI/CaravanCampPanel/PanelContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 24
+text = "Caravan Camp"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/CaravanCampPanel/PanelContent"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Description" type="RichTextLabel" parent="UI/CaravanCampPanel/PanelContent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]Visit the bustling [color=#8B5523]Caravan Camp[/color]![/center]
+
+Join the evening gathering around the campfire where travelers share ancient Berber tales passed down through generations. Listen carefully and retell the stories to prove your understanding of the rich oral tradition.
+
+[b]Quest Type:[/b] Storytelling Challenge
+[b]Reward:[/b] Culture Points & Berber Amulet
+[b]Difficulty:[/b] Hard
+
+[center][color=#355E3B]Ready to learn the ancient tales?[/color][/center]"
+fit_content = true
+
+[node name="Spacer2" type="Control" parent="UI/CaravanCampPanel/PanelContent"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="UI/CaravanCampPanel/PanelContent"]
+layout_mode = 2
+
+[node name="CloseButton" type="TextureButton" parent="UI/CaravanCampPanel/PanelContent/ButtonContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_button")
+
+[node name="CloseLabel" type="Label" parent="UI/CaravanCampPanel/PanelContent/ButtonContainer/CloseButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
+theme_override_font_sizes/font_size = 16
+text = "Close"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="UI/CaravanCampPanel/PanelContent/ButtonContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="StartQuestButton" type="TextureButton" parent="UI/CaravanCampPanel/PanelContent/ButtonContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_button")
+
+[node name="StartLabel" type="Label" parent="UI/CaravanCampPanel/PanelContent/ButtonContainer/StartQuestButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 16
+text = "Start Quest"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeCapsulePanel" type="NinePatchRect" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 350.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_panel")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="PanelContent" type="VBoxContainer" parent="UI/TimeCapsulePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="UI/TimeCapsulePanel/PanelContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831, 0.627, 0.09, 1)
+theme_override_font_sizes/font_size = 24
+text = "Time Capsule - Collected Treasures"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="UI/TimeCapsulePanel/PanelContent"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/TimeCapsulePanel/PanelContent"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TreasuresList" type="RichTextLabel" parent="UI/TimeCapsulePanel/PanelContent/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.165, 0.247, 0.482, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center][color=#D4A017]Your collected treasures will appear here...[/color][/center]
+
+Complete quests to add items to your time capsule!"
+fit_content = true
+
+[node name="Spacer2" type="Control" parent="UI/TimeCapsulePanel/PanelContent"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="CloseButton" type="TextureButton" parent="UI/TimeCapsulePanel/PanelContent"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_button")
+
+[node name="CloseLabel" type="Label" parent="UI/TimeCapsulePanel/PanelContent/CloseButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 0.965
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.545, 0.333, 0.137, 1)
+theme_override_font_sizes/font_size = 16
+text = "Close"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="UI/QuestHotspots/TradeStallButton" to="." method="_on_trade_stall_button_pressed"]
 [connection signal="pressed" from="UI/QuestHotspots/OasisPathButton" to="." method="_on_oasis_path_button_pressed"]
 [connection signal="pressed" from="UI/QuestHotspots/CaravanCampButton" to="." method="_on_caravan_camp_button_pressed"]
 [connection signal="pressed" from="UI/BottomPanel/VBoxContainer/TimeCapsuleButton" to="." method="_on_time_capsule_button_pressed"]
+[connection signal="pressed" from="UI/TradeStallPanel/PanelContent/ButtonContainer/CloseButton" to="." method="_on_trade_stall_panel_close_pressed"]
+[connection signal="pressed" from="UI/TradeStallPanel/PanelContent/ButtonContainer/StartQuestButton" to="." method="_on_trade_stall_quest_start_pressed"]
+[connection signal="pressed" from="UI/OasisPathPanel/PanelContent/ButtonContainer/CloseButton" to="." method="_on_oasis_path_panel_close_pressed"]
+[connection signal="pressed" from="UI/OasisPathPanel/PanelContent/ButtonContainer/StartQuestButton" to="." method="_on_oasis_path_quest_start_pressed"]
+[connection signal="pressed" from="UI/CaravanCampPanel/PanelContent/ButtonContainer/CloseButton" to="." method="_on_caravan_camp_panel_close_pressed"]
+[connection signal="pressed" from="UI/CaravanCampPanel/PanelContent/ButtonContainer/StartQuestButton" to="." method="_on_caravan_camp_quest_start_pressed"]
+[connection signal="pressed" from="UI/TimeCapsulePanel/PanelContent/CloseButton" to="." method="_on_time_capsule_panel_close_pressed"]

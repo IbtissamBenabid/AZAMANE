@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://devced6swqxe3"
-path="res://.godot/imported/desert_veil_16x16.svg-f88f0ba1a190d6ecdc8bf1f29891fd42.ctex"
+uid="uid://dtgr22aa0dar2"
+path="res://.godot/imported/AZAMANE.png-5b10ff9b0699b53e42dedd26f6546060.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/desert_veil_16x16.svg"
-dest_files=["res://.godot/imported/desert_veil_16x16.svg-f88f0ba1a190d6ecdc8bf1f29891fd42.ctex"]
+source_file="res://assets/backgrounds/AZAMANE.png"
+dest_files=["res://.godot/imported/AZAMANE.png-5b10ff9b0699b53e42dedd26f6546060.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
